@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Items = styled.div`
-    grid-column: 7 / 10;
+    grid-column: 7 / -1;
 `;
 
 export const Title = styled.p`
