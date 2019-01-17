@@ -1,16 +1,17 @@
 import React, { Component } from 'react';
-import Form from './components/Form';
+import { AppContainer } from './App_css';
+import Form from './components/Form/';
 import Items from './components/Items';
 import List from './components/List';
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <AppContainer>
         <Form />
         <Items />
         <List />
-      </div>
+      </AppContainer>
     );
   }
 }
