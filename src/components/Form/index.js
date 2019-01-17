@@ -1,8 +1,9 @@
 import React from 'react';
+import { Form } from './Form_css';
 
-const Form = () => {
+const FormContainer = () => {
     return(
-        <div>
+        <Form>
            <p>Enter your item</p>
            <p>Enter your name and the item you're bringing to the potluck.</p> 
            <form>
@@ -10,8 +11,8 @@ const Form = () => {
                <input type="text" placeholder="Item" />
            </form>
            <button>Sign up</button>
-        </div>
+        </Form>
     )
 }
 
-export default Form;
+export default FormContainer;
