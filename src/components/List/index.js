@@ -1,10 +1,10 @@
 import React from 'react';
-import { List } from './List_css';
+import { List, Title } from './List_css';
 
 const ListContainer = () => {
     return(
         <List>
-            <p>What's left to bring: </p>
+            <Title>What's left to bring: </Title>
         </List>
     )
 }

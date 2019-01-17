@@ -1,10 +1,10 @@
 import React from 'react';
-import { Items } from './Items_css';
+import { Items, Title } from './Items_css';
 
 const ItemsContainer = () => {
     return(
         <Items>
-            <p>What people are bringing: </p>
+            <Title>What people are bringing: </Title>
         </Items>
     )
 };
