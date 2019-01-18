@@ -12,16 +12,20 @@ class App extends Component {
       { id: 1, name: 'Hank Hill', item: 'Hamburgers' },
       { id: 2, name: 'Peggy Hill', item: 'Brown Betty Pie' },
       { id: 3, name: 'Dale Gribble', item: 'Forks and Spoons'}
+    ],
+    foods: [
+      { id: 0, name: 'Hamburger Buns' },
+      { id: 1, name: 'Chips' }
     ]
   }
 
   render() {
-    const { people } = this.state;
+    const { people, foods } = this.state;
     return (
       <AppContainer>
         <Form />
         <Items people={people} />
-        <List />
+        <List foods={foods} />
       </AppContainer>
     );
   }
