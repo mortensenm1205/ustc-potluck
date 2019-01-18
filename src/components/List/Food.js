@@ -1,7 +1,8 @@
 import React from 'react';
+import { Food } from './css/food';
 
 const FoodItem = ({ food }) => {
-    return <p>{food.name}</p>
+    return <Food>{food.name}</Food>
 }
 
 export default FoodItem;

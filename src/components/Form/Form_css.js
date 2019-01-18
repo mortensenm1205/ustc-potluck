@@ -17,11 +17,17 @@ export const SubTitle = styled.p`
 export const Input = styled.input`
     display: block;
     width: 80%;
+    font-size: 1.4rem;
     margin: 0 0 5%;
     padding: 4% 0;
     background-color: #f5f5f5;
     border: none;
     border-bottom: 2px solid #ccc;
+
+    :focus {
+        outline: 0;
+        border-bottom: 2px solid #f93e3e;
+    }
 `;
 
 export const Button = styled.button`

@@ -16,7 +16,9 @@ export const CardName = styled.p`
     font-weight: 700;
 `;
 
-export const CardItem = styled.p``;
+export const CardItem = styled.p`
+    line-height: 25px;
+`;
 
 export const CloseCard = styled.button`
     position: absolute;
@@ -27,6 +29,12 @@ export const CloseCard = styled.button`
     box-shadow: 9px 7px 14px -9px;
     padding: 3% 7%;
     font-size: 1.6rem;
+
+    :hover {
+        background-color: #f93e3e;
+        color: #fff;
+        box-shadow: 9px 7px 14px -9px #000;
+    }
 
     :active {
         transform: translateY(2px);
