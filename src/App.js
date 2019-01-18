@@ -18,14 +18,20 @@ class App extends Component {
   }
 
   removePerson = person => {
-    let people = [ ...this.state.people ];
-    people.map(personObj => {
+    let { foods, people } = this.state;
+    let peopleArr = [ ...people ];
+    // tests for Food/List Comp
+    let foodArr = [ ...foods ];
+    let foodObj = { id: uniqid(), name: person.item }
+    peopleArr.map(personObj => {
       if(person.name === personObj.name) {
-        people.splice(people.indexOf(person), 1);
-        return this.setState({ people: people })
+        peopleArr.splice(peopleArr.indexOf(person), 1);
+        // testing on sending back deleted data to the Food/List Comp
+        foodArr.push(foodObj);
+        return this.setState({ people: peopleArr, foods: foodArr })
       }
 
-      return this.setState({ people: people });
+      return this.setState({ people: peopleArr, foods: foodArr });
     })
   }
 
