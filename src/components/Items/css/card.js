@@ -33,6 +33,7 @@ export const CloseCard = styled.button`
     :hover {
         background-color: #f93e3e;
         color: #fff;
+        border: 0.5px solid #757575;
         box-shadow: 9px 7px 14px -9px #000;
     }
 
