@@ -2,12 +2,15 @@ import React from 'react';
 import { Items, Title } from './css/items';
 import ItemCard from './Card';
 
-const ItemsContainer = ({ people }) => {
+const ItemsContainer = ({ people, remove }) => {
     return(
         <Items>
             <Title>What people are bringing: </Title>
-            {people.map(person => {
-                return <ItemCard person={person} key={person.id} />
+            {people.map(personObj => {
+                if (personObj === 0) {
+                    return null
+                }
+                return <ItemCard person={personObj} key={personObj.id} remove={remove} />
             })}
         </Items>
     )
