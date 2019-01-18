@@ -19,12 +19,24 @@ class App extends Component {
     ]
   }
 
+  removePerson = person => {
+    let people = [ ...this.state.people ];
+    people.map(personObj => {
+      if(person.name === personObj.name) {
+        let start = people.indexOf(personObj);
+        return people.splice(start, 1, 0);
+      }
+
+      return this.setState({ people: people });
+    })
+  }
+
   render() {
     const { people, foods } = this.state;
     return (
       <AppContainer>
-        <Form />
-        <Items people={people} />
+        <Form  />
+        <Items people={people} remove={this.removePerson} />
         <List foods={foods} />
       </AppContainer>
     );
