@@ -10,6 +10,7 @@ const ItemsContainer = ({ people, remove }) => {
                 if (personObj === 0) {
                     return null
                 }
+
                 return <ItemCard person={personObj} key={personObj.id} remove={remove} />
             })}
         </Items>

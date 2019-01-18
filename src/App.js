@@ -21,8 +21,8 @@ class App extends Component {
     let people = [ ...this.state.people ];
     people.map(personObj => {
       if(person.name === personObj.name) {
-        let start = people.indexOf(personObj);
-        return people.splice(start, 1);
+        people.splice(people.indexOf(person), 1);
+        return this.setState({ people: people })
       }
 
       return this.setState({ people: people });

@@ -18,7 +18,6 @@ const ListContainer = ({ foods, entry }) => {
 
                     return <FoodItem key={food.id} food={food} />
                 })}
-                {console.log(foods)}
             </Section>
         </List>
     )
