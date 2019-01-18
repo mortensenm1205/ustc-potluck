@@ -24,6 +24,15 @@ export const CloseCard = styled.button`
     left: -14px;
     border: none;
     border-radius: 30px;
+    box-shadow: 9px 7px 14px -9px;
     padding: 3% 7%;
     font-size: 1.6rem;
+
+    :active {
+        transform: translateY(2px);
+    }
+
+    :focus {
+        outline: 0;
+    }
 `;
