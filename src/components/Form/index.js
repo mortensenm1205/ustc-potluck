@@ -1,16 +1,16 @@
 import React from 'react';
 import { Form, Input, Button, Title, SubTitle } from './Form_css';
 
-const FormContainer = () => {
+const FormContainer = ({ entry, submitEntry }) => {
     return(
         <Form>
            <Title>Enter your item</Title>
            <SubTitle>Enter your name and the item you're bringing to the potluck.</SubTitle> 
-           <form>
-               <Input type="text" placeholder="Name" />
-               <Input type="text" placeholder="Item" />
+           <form onSubmit={submitEntry}>
+                <Input type="text" placeholder="Name" name="name" onChange={entry} />
+                <Input type="text" placeholder="Item" name="item" onChange={entry} />
+                <Button>Sign up</Button>
            </form>
-           <Button>Sign up</Button>
         </Form>
     )
 }
