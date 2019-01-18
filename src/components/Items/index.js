@@ -1,5 +1,5 @@
 import React from 'react';
-import { Items, Title } from './Items_css';
+import { Items, Title } from './css/items';
 import ItemCard from './Card';
 
 const ItemsContainer = ({ people }) => {

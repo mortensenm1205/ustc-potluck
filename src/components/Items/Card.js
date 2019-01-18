@@ -1,11 +1,12 @@
 import React from 'react';
+import { Card, CardName, CardItem } from './css/card';
 
 const ItemCard = ({ person }) => {
     return(
-        <div>
-            <p>Name: {person.name}</p>
-            <p>Item: {person.item}</p>
-        </div>
+        <Card>
+            <CardName>Name: {person.name}</CardName>
+            <CardItem>Item: {person.item}</CardItem>
+        </Card>
     );
 }
 
