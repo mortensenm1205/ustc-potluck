@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import idGen from 'react-id-generator';
+import uniqid from 'uniqid';
 
 import { AppContainer } from './App_css';
 import Form from './components/Form/';
@@ -11,8 +11,8 @@ class App extends Component {
   state = {
     people: [],
     foods: [
-      { id: idGen(), name: 'Hamburger Buns' },
-      { id: idGen(), name: 'Chips' }
+      { id: uniqid(), name: 'Hamburger Buns' },
+      { id: uniqid(), name: 'Chips' }
     ],
     entry: {}
   }
@@ -22,7 +22,7 @@ class App extends Component {
     people.map(personObj => {
       if(person.name === personObj.name) {
         let start = people.indexOf(personObj);
-        return people.splice(start, 1, 0);
+        return people.splice(start, 1);
       }
 
       return this.setState({ people: people });
@@ -30,16 +30,16 @@ class App extends Component {
   }
 
   handleChange = e => {
-    this.setState({ 
-      entry: {...this.state.entry, [e.target.name]: e.target.value }
-    })
+      this.setState({ 
+        entry: {...this.state.entry, [e.target.name]: e.target.value }
+      })
   }
 
   handleSubmit = e => {
     const { entry } = this.state;
     let peopleArr = [ ...this.state.people ];
-    entry.id = idGen();
-    peopleArr.push(entry)
+    entry.id = uniqid();
+    peopleArr.push(entry);
     e.preventDefault();
     e.target.reset();
     this.setState({
@@ -48,12 +48,12 @@ class App extends Component {
   }
 
   render() {
-    const { people, foods } = this.state;
+    const { people, foods, entry } = this.state;
     return (
       <AppContainer>
         <Form entry={this.handleChange} submitEntry={this.handleSubmit} />
         <Items people={people} remove={this.removePerson} />
-        <List foods={foods} />
+        <List foods={foods} entry={entry} />
       </AppContainer>
     );
   }
