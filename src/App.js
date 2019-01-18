@@ -10,7 +10,8 @@ class App extends Component {
     people: [
       { id: 0, name: 'Bobby Hill', item: 'Drinks' },
       { id: 1, name: 'Hank Hill', item: 'Hamburgers' },
-      { id: 2, name: 'Peggy Hill', item: 'Brown Betty Pie' }
+      { id: 2, name: 'Peggy Hill', item: 'Brown Betty Pie' },
+      { id: 3, name: 'Dale Gribble', item: 'Forks and Spoons'}
     ]
   }
 
