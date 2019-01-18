@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import idGen from 'react-id-generator';
+
 import { AppContainer } from './App_css';
 import Form from './components/Form/';
 import Items from './components/Items/';
@@ -7,16 +9,12 @@ import List from './components/List/';
 class App extends Component {
 
   state = {
-    people: [
-      { id: 0, name: 'Bobby Hill', item: 'Drinks' },
-      { id: 1, name: 'Hank Hill', item: 'Hamburgers' },
-      { id: 2, name: 'Peggy Hill', item: 'Brown Betty Pie' },
-      { id: 3, name: 'Dale Gribble', item: 'Forks and Spoons'}
-    ],
+    people: [],
     foods: [
-      { id: 0, name: 'Hamburger Buns' },
-      { id: 1, name: 'Chips' }
-    ]
+      { id: idGen(), name: 'Hamburger Buns' },
+      { id: idGen(), name: 'Chips' }
+    ],
+    entry: {}
   }
 
   removePerson = person => {
@@ -31,11 +29,29 @@ class App extends Component {
     })
   }
 
+  handleChange = e => {
+    this.setState({ 
+      entry: {...this.state.entry, [e.target.name]: e.target.value }
+    })
+  }
+
+  handleSubmit = e => {
+    const { entry } = this.state;
+    let peopleArr = [ ...this.state.people ];
+    entry.id = idGen();
+    peopleArr.push(entry)
+    e.preventDefault();
+    e.target.reset();
+    this.setState({
+      people: peopleArr
+    });
+  }
+
   render() {
     const { people, foods } = this.state;
     return (
       <AppContainer>
-        <Form  />
+        <Form entry={this.handleChange} submitEntry={this.handleSubmit} />
         <Items people={people} remove={this.removePerson} />
         <List foods={foods} />
       </AppContainer>
