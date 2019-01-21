@@ -1,8 +1,8 @@
 import React from 'react';
-import { List, Title, Section } from '../../css/list';
-import FoodItem from './Food';
+import { List, Title, Section } from './css/list';
+import FoodItem from './Item';
 
-const ListContainer = ({ foods, entry }) => {
+const FoodContainer = ({ foods, entry }) => {
     return(
         <List>
             <Title>What's left to bring: </Title>
@@ -15,4 +15,4 @@ const ListContainer = ({ foods, entry }) => {
     )
 }
 
-export default ListContainer;
+export default FoodContainer;

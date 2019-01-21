@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import uniqid from 'uniqid';
 
 import { AppContainer } from './css/app';
-import Form from './components/Form/';
-import Items from './components/Items/';
-import List from './components/List/';
+import Foods from './Foods/';
+import List from './List';
+import Form from './List/Form';
 
 class App extends Component {
 
@@ -22,8 +22,8 @@ class App extends Component {
     return (
       <AppContainer>
         <Form entry={this.handleChange} submitEntry={this.handleSubmit} />
-        <Items people={people} remove={this.removePerson} />
-        <List foods={foods} entry={entry} />
+        <List people={people} remove={this.removePerson} />
+        <Foods foods={foods} entry={entry} />
       </AppContainer>
     );
   }

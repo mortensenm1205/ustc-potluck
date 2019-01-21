@@ -1,7 +1,7 @@
 import React from 'react';
-import { Form, Input, Button, Title, SubTitle } from '../../css/form';
+import { Form, Input, Button, Title, SubTitle } from './css/form';
 
-const FormContainer = ({ entry, submitEntry }) => {
+const ListForm = ({ entry, submitEntry }) => {
     return(
         <Form>
            <Title>Enter your item</Title>
@@ -15,4 +15,4 @@ const FormContainer = ({ entry, submitEntry }) => {
     )
 }
 
-export default FormContainer;
+export default ListForm;

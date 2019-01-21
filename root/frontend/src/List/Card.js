@@ -1,7 +1,7 @@
 import React from 'react';
-import { Card, CardName, CardItem, CloseCard } from '../../css/card';
+import { Card, CardName, CardItem, CloseCard } from './css/card';
 
-const ItemCard = ({ person, remove }) => {
+const ListCard = ({ person, remove }) => {
     return(
         <Card>
             <CloseCard onClick={() => remove(person)}>x</CloseCard>
@@ -11,4 +11,4 @@ const ItemCard = ({ person, remove }) => {
     );
 }
 
-export default ItemCard;
+export default ListCard;
