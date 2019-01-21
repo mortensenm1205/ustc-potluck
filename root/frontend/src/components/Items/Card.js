@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardName, CardItem, CloseCard } from './css/card';
+import { Card, CardName, CardItem, CloseCard } from '../../css/card';
 
 const ItemCard = ({ person, remove }) => {
     return(

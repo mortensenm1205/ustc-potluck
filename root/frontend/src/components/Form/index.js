@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button, Title, SubTitle } from './form_css';
+import { Form, Input, Button, Title, SubTitle } from '../../css/form';
 
 const FormContainer = ({ entry, submitEntry }) => {
     return(

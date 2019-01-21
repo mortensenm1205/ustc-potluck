@@ -1,5 +1,5 @@
 import React from 'react';
-import { List, Title, Section } from './css/list';
+import { List, Title, Section } from '../../css/list';
 import FoodItem from './Food';
 
 const ListContainer = ({ foods, entry }) => {
