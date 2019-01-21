@@ -1,0 +1,28 @@
+{
+  "name": "ustc-potluck-server",
+  "version": "1.0.0",
+  "description": "Server side code for the ustc-potluck app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mortensenm1205/ustc-potluck.git"
+  },
+  "author": "Matt Mortensen",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mortensenm1205/ustc-potluck/issues"
+  },
+  "homepage": "https://github.com/mortensenm1205/ustc-potluck#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongodb": "^3.1.12"
+  },
+  "devDependencies": {
+    "concurrently": "^4.1.0",
+    "nodemon": "^1.18.9"
+  }
+}
