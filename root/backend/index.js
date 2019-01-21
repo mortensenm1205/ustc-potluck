@@ -7,6 +7,6 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
-app.use('/', foods);
+app.use('/api/foods', foods);
 
 app.listen(port, () => console.log(`Running on port ${port}`))
