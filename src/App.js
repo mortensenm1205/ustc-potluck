@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import uniqid from 'uniqid';
 
-import { AppContainer } from './App_css';
+import { AppContainer } from './app_css';
 import Form from './components/Form/';
 import Items from './components/Items/';
 import List from './components/List/';
