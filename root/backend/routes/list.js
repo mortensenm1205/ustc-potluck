@@ -27,4 +27,18 @@ router.post('/addItem', (req, res) => {
         .catch(e => res.status(400).send(e))
 })
 
+router.delete('/:item', (req, res) => {
+    List.deleteOne({ item: req.params.item })
+        .then(() => {
+            let food = new Foods({
+                item: req.params.item
+            })
+
+            food.save()
+                .then(food => res.status(200).send({ food }))
+                .catch(e => res.status(400).send(e))
+        })
+        .catch(e => res.status(400).send(e))
+})
+
 module.exports = router;
