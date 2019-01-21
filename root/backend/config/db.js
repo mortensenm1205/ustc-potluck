@@ -1,16 +1,8 @@
-const { MongoClient } = require('mongodb');
+const mongoose = require('mongoose');
 
-// Local MongoDB connection with Promises
-// for resuable db connection pools.  
-let connect = () => {
-    return new Promise((res, rej) => {
-        MongoClient.connect(
-            "mongodb://localhost:27017/ustc-potluck",
-            { useNewUrlParser: true },
-            (err, database) => {
-                if (err) rej(err)
-                res(database.db());
-        })
-    })}
+mongoose.connect(
+    process.env.MONGODB_URI || 'mongodb://localhost:27017/ustc-potluck',
+    { useNewUrlParser: true }
+);
 
-module.exports = { connect };
+module.exports = { mongoose };
