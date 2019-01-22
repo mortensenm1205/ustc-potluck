@@ -6,7 +6,7 @@ const ListContainer = ({ people, remove }) => {
     return(
         <Items>
             <Title>What people are bringing: </Title>
-            {people.map(personObj => <ListCard person={personObj} key={personObj.id} remove={remove} />)}
+            {people.map(personObj => <ListCard person={personObj} key={personObj._id} remove={remove} />)}
         </Items>
     )
 };
