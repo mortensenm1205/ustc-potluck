@@ -6,7 +6,7 @@
   "scripts": {
     "start-watch": "nodemon index.js",
     "dev": "concurrently \"npm run start-watch\" \"cd client/src && npm run start\"",
-    "start": "npm run dev",
+    "start": "node index.js",
     "heroku-postbuild": "cd client/ && npm i && npm run build"
   },
   "repository": {
