@@ -4,7 +4,7 @@ import { Card, CardName, CardItem, CloseCard } from './css/card';
 const ListCard = ({ person, remove }) => {
     return(
         <Card>
-            <CloseCard onClick={() => remove(person)}>x</CloseCard>
+            <CloseCard onClick={e => remove(e, person)}>x</CloseCard>
             <CardName>Name: {person.name}</CardName>
             <CardItem>Item: {person.item}</CardItem>
         </Card>
