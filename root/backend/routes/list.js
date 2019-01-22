@@ -28,16 +28,18 @@ router.post('/addPotLuckItem', (req, res) => {
         .catch(e => res.status(400).send(e))
 })
 
-router.delete('/:potluckItem', (req, res) => {
-    PotLuckItem.deleteOne({ item: req.params.potluckItem })
-        .then(() => {
+router.delete(':plItem?', (req, res) => {
+    PotLuckItem.deleteOne({ item: req.query.plItem })
+        .then(response => {
             let food = new Food({
-                item: req.params.item
+                item: req.query.plItem
             })
 
             food.save()
-                .then(food => res.status(200).send({ food }))
-                .catch(e => res.status(400).send(e))
+                .then(food => console.log({ food }))
+                .catch(e => console.log(e))
+
+            return res.status(200).send(response)
         })
         .catch(e => res.status(400).send(e))
 })
