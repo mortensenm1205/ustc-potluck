@@ -1,36 +1,36 @@
 const express = require('express');
 
 const { mongoose } = require('../config/db');
-const { List } = require('../models/list');
-const { Foods } = require('../models/foods');
+const { PotLuckItem } = require('../models/list');
+const { Food } = require('../models/foods');
 
 const router = express.Router();
 
-router.get('/getList', (req, res) => {
-    List.find()
+router.get('/getPotLuckList', (req, res) => {
+    PotLuckItem.find()
         .then(item => res.status(200).send({ item }))
         .catch(e => res.status(400).send(e))
 });
 
-router.post('/addItem', (req, res) => {
-    let item = new List({
+router.post('/addPotLuckItem', (req, res) => {
+    let item = new PotLuckItem({
         name: req.body.name,
         item: req.body.item
     })
 
     item.save()
         .then(it => {
-            Foods.deleteOne({ item: it.item})
+            Food.deleteOne({ item: it.item})
                 .then(response => res.status(200).send(response))
                 .catch(e => res.status(400).send(e))
         })
         .catch(e => res.status(400).send(e))
 })
 
-router.delete('/:item', (req, res) => {
-    List.deleteOne({ item: req.params.item })
+router.delete('/:potluckItem', (req, res) => {
+    PotLuckItem.deleteOne({ item: req.params.potluckItem })
         .then(() => {
-            let food = new Foods({
+            let food = new Food({
                 item: req.params.item
             })
 

@@ -9,6 +9,6 @@ const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
 app.use('/api/foods', foods);
-app.use('/api/list', list);
+app.use('/api/plList', list);
 
 app.listen(port, () => console.log(`Running on port ${port}`))

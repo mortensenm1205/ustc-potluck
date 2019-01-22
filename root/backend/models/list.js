@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-let ListSchema = new Schema({
+let PotLuckItemSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -13,6 +13,6 @@ let ListSchema = new Schema({
     }
 })
 
-let List = model('List', ListSchema)
+let PotLuckItem = model('Potluck Item', PotLuckItemSchema)
 
-module.exports = { List };
+module.exports = { PotLuckItem };

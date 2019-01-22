@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-let FoodsSchema = new Schema({
+let FoodSchema = new Schema({
     item: {
         type: String,
         required: true,
@@ -8,7 +8,7 @@ let FoodsSchema = new Schema({
     }
 })
 
-let Foods = model('Foods', FoodsSchema);
+let Food = model('Food', FoodSchema);
 
 
-module.exports = { Foods };
+module.exports = { Food };

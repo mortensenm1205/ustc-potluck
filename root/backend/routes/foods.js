@@ -1,19 +1,19 @@
 const express = require('express');
 
 const { mongoose } = require('../config/db');
-const { Foods } = require('../models/foods');
+const { Food } = require('../models/foods');
 
 const router = express.Router();
 
 router.get('/getFoods', (req, res) => {
-    Foods.find()
+    Food.find()
         .then(food => res.status(200).send({ food }))
         .catch(e => res.status(400).send(e))
 });
 
 // This will become a protected route later on.
 router.post('/addFood', (req, res) => {
-    let food = new Foods({
+    let food = new Food({
         item: req.body.item
     })
 
