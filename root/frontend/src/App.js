@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import uniqid from 'uniqid';
 
 import { AppContainer } from './app_css';
 import Foods from './Foods/';
 import List from './List/';
 import Form from './Form/';
+import { loadPotluckList } from './List/actions';
 
 class App extends Component {
 
@@ -24,9 +26,22 @@ class App extends Component {
         <Form entry={this.handleChange} submitEntry={this.handleSubmit} />
         <List people={people} remove={this.removePerson} />
         <Foods foods={foods} entry={entry} />
+        {console.log(this.props)}
       </AppContainer>
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    potluckList: state.loadPotluckData
+  }
+}
 
-export default App;
+const mapDispatchToProps = dispatch => {
+  return {
+    getPotluckList: () => dispatch(loadPotluckList())
+  }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
