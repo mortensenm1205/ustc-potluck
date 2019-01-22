@@ -6,10 +6,12 @@ import {
 } from 'redux';
 
 import { loadPotluckData } from '../List/reducers';
+import { loadFoodData } from '../Foods/reducers';
 import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
-    loadPotluckData
+    loadPotluckData, 
+    loadFoodData
 })
 
 export default createStore(

@@ -7,6 +7,7 @@ import Foods from './Foods/';
 import List from './List/';
 import Form from './Form/';
 import { loadPotluckList, addPotluckItem, removePotluckItem } from './List/actions';
+import { loadFoodList } from './Foods/actions';
 
 class App extends Component {
 
@@ -19,8 +20,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    const { getPotluckList } = this.props;
+    const { getPotluckList, getFoodsList } = this.props;
     getPotluckList();
+    getFoodsList();
   }
 
   formChange = e => {
@@ -43,20 +45,20 @@ class App extends Component {
   }
 
   render() {
-    const { foods, entry } = this.state;
-    const { potluckList } = this.props;
+    const { potluckList, foodList } = this.props;
     return (
       <AppContainer>
         <Form formChange={this.formChange} formSubmit={this.formSubmit} />
         <List people={potluckList} remove={this.potLuckItemRemoval} />
-        <Foods foods={foods} entry={entry} />
+        <Foods foods={foodList} />
       </AppContainer>
     );
   }
 }
 const mapStateToProps = state => {
   return {
-    potluckList: state.loadPotluckData
+    potluckList: state.loadPotluckData,
+    foodList: state.loadFoodData
   }
 }
 
@@ -64,7 +66,8 @@ const mapDispatchToProps = dispatch => {
   return {
     getPotluckList: () => dispatch(loadPotluckList()),
     addPotluckListItem: (location, potluckItem) => dispatch(addPotluckItem(location, potluckItem)),
-    removePotluckListItem: (location, potluckItem) => dispatch(removePotluckItem(location, potluckItem))
+    removePotluckListItem: (location, potluckItem) => dispatch(removePotluckItem(location, potluckItem)),
+    getFoodsList: () => dispatch(loadFoodList())
   }
 }
 
