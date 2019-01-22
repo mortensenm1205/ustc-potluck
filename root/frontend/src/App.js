@@ -6,7 +6,7 @@ import { AppContainer } from './app_css';
 import Foods from './Foods/';
 import List from './List/';
 import Form from './Form/';
-import { loadPotluckList } from './List/actions';
+import { loadPotluckList, addPotluckItem } from './List/actions';
 
 class App extends Component {
 
@@ -23,12 +23,26 @@ class App extends Component {
     getPotluckList();
   }
 
+  formChange = e => {
+    const { entry } = this.state;
+    this.setState({ entry: {...entry, [e.target.name]: e.target.value}})
+  }
+
+  formSubmit = e => {
+    const { entry } = this.state;
+    const { addPotluckListItem } = this.props;
+    e.preventDefault();
+    e.target.reset();
+    addPotluckListItem(window.location, entry);
+    this.setState({ entry: {}})
+  }
+
   render() {
     const { foods, entry } = this.state;
     const { potluckList } = this.props;
     return (
       <AppContainer>
-        <Form entry={this.handleChange} submitEntry={this.handleSubmit} />
+        <Form formChange={this.formChange} formSubmit={this.formSubmit} />
         <List people={potluckList} remove={this.removePerson} />
         <Foods foods={foods} entry={entry} />
       </AppContainer>
@@ -43,7 +57,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getPotluckList: () => dispatch(loadPotluckList())
+    getPotluckList: () => dispatch(loadPotluckList()),
+    addPotluckListItem: (location, potluckItem) => dispatch(addPotluckItem(location, potluckItem))
   }
 }
 

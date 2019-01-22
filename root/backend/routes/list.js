@@ -21,8 +21,9 @@ router.post('/addPotLuckItem', (req, res) => {
     item.save()
         .then(it => {
             Food.deleteOne({ item: it.item})
-                .then(response => res.status(200).send(response))
-                .catch(e => res.status(400).send(e))
+                .then(response => console.log(response))
+                .catch(e => console.log(e))
+            return res.status(200).send(it)
         })
         .catch(e => res.status(400).send(e))
 })
