@@ -21,12 +21,10 @@
   "homepage": "https://github.com/mortensenm1205/ustc-potluck#readme",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "concurrently": "^4.1.0",
     "cors": "^2.8.5",
     "express": "^4.16.4",
-    "mongoose": "^5.4.5"
-  },
-  "devDependencies": {
-    "concurrently": "^4.1.0",
+    "mongoose": "^5.4.5",
     "nodemon": "^1.18.9"
   }
 }
