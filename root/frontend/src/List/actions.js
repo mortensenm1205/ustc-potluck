@@ -31,3 +31,13 @@ export const addPotluckItem = (location, potLuckItem) => {
         .catch(e => console.log(e))
     }
 }
+
+export const removePotluckItem = (location, potLuckItem) => {
+    return dispatch => {
+        axios.delete(
+            '/api/plList',
+            { params: { plItem: potLuckItem.item }})
+        .then(res => res ? location.reload() : null)
+        .catch(e => console.log(e))
+    }
+}
