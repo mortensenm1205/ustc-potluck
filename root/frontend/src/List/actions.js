@@ -10,13 +10,7 @@ export const loadPotluckListSuccess = potluckList => {
 export const loadPotluckList = () => {
     return dispatch => {
         axios.get('/api/plList/getPotLuckList')
-            .then(res => {
-                if(!res) {
-                    return "PotLuck List doesn't exist."
-                }
-                JSON.parse(res);
-            })
-            .then(res => dispatch(loadPotluckListSuccess(res)))
+            .then(res => dispatch(loadPotluckListSuccess(res.data.item)))
             .catch(e => console.log(e))
     }
 }

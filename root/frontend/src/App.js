@@ -11,7 +11,6 @@ import { loadPotluckList } from './List/actions';
 class App extends Component {
 
   state = {
-    people: [],
     foods: [
       { id: uniqid(), name: 'Hamburger Buns' },
       { id: uniqid(), name: 'Chips' }
@@ -19,14 +18,19 @@ class App extends Component {
     entry: {}
   }
 
+  componentDidMount() {
+    const { getPotluckList } = this.props;
+    getPotluckList();
+  }
+
   render() {
-    const { people, foods, entry } = this.state;
+    const { foods, entry } = this.state;
+    const { potluckList } = this.props;
     return (
       <AppContainer>
         <Form entry={this.handleChange} submitEntry={this.handleSubmit} />
-        <List people={people} remove={this.removePerson} />
+        <List people={potluckList} remove={this.removePerson} />
         <Foods foods={foods} entry={entry} />
-        {console.log(this.props)}
       </AppContainer>
     );
   }
