@@ -4,7 +4,7 @@
   "description": "A MERN-stack app, that logs in the User data into a database while also displaying the content for the User to see.",
 
   "scripts": {
-    "start": "\"cd ./root/backend/ && npm run dev\""
+    "start": "cd ./root/backend/ && npm run dev"
   },
   "repository": {
     "type": "git",
