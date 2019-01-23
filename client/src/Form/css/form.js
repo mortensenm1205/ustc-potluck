@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
 export const Form = styled.div`
-    grid-column: 3 / 7;
+    grid-column: 1 / -1;
+
+    @media(min-width: 800px) {
+        grid-column: 3 / 7;
+    }
 `;
 
 export const Title = styled.p`

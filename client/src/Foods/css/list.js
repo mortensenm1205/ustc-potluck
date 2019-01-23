@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
 export const List = styled.div`
-    grid-column: 3 / 10;
+    grid-column: 1 / -1;
+
+    @media(min-width: 800px) {
+        grid-column: 3 / 10;
+    }
 `;
 
 export const Title = styled.p`
