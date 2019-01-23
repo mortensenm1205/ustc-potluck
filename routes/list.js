@@ -56,19 +56,29 @@ router.post('/addPotLuckItem', (req, res) => {
 })
 
 router.delete(':plItem?', (req, res) => {
-    ListedPotLuckItem.deleteOne({ item: req.query.plItem })
-        .then(response => {
-            let food = new Food({
-                item: req.query.plItem
-            })
+    NonListedPotLuckItem.find().then(nonItems => {
+        for (var i = 0; i < nonItems.length; i++) {
+            if (nonItems[i].item === req.query.plItem) {
+                return NonListedPotLuckItem.deleteOne({ item: req.query.plItem})
+                    .then(response => res.status(200).send(response))
+                    .catch(e => res.status(400).send(e));
+            } else { 
+                return ListedPotLuckItem.deleteOne({ item: req.query.plItem })
+                    .then(response => {
+                        let food = new Food({
+                            item: req.query.plItem
+                        })
 
-            food.save()
-                .then(food => console.log({ food }))
-                .catch(e => console.log(e))
+                        food.save()
+                            .then(food => res.status(200).send({ food }))
+                            .catch(e => res.status(400).send(e))
 
-            return res.status(200).send(response)
-        })
-        .catch(e => res.status(400).send(e))
+                        console.log(response)
+                    })
+                    .catch(e => console.log(e))
+             }
+        }
+    })
 })
 
 module.exports = router;
