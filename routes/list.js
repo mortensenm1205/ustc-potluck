@@ -24,19 +24,35 @@ router.get('/getPotLuckList', (req, res, next) => {
 });
 
 router.post('/addPotLuckItem', (req, res) => {
-    let item = new ListedPotLuckItem({
-        name: req.body.name,
-        item: req.body.item
-    });
-
-    item.save()
-        .then(it => {
-            Food.deleteOne({ item: it.item})
-                .then(response => console.log(response))
-                .catch(e => console.log(e))
-            return res.status(200).send(it)
+    Food.find().then(foods => {
+        foods.map(food => {
+            if (food.item === req.body.item) {
+                let listed_item = new ListedPotLuckItem({
+                    name: req.body.name,
+                    item: req.body.item
+                });
+            
+                return listed_item.save()
+                .then(it => {
+                    Food.deleteOne({ item: it.item})
+                        .then(response => console.log(response))
+                        .catch(e => console.log(e))
+                    res.status(200).send(it)
+                })
+                .catch(e => res.status(400).send(e));
+            } else {
+                let non_listed_item = new NonListedPotLuckItem({
+                    name: req.body.name,
+                    item: req.body.item
+                });
+    
+                return non_listed_item.save()
+                    .then(it => res.status(200).send(it))
+                    .catch(e => res.status(400).send(e))
+            }
         })
-        .catch(e => res.status(400).send(e))
+    })
+
 })
 
 router.delete(':plItem?', (req, res) => {
