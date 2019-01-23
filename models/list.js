@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 
-let PotLuckItemSchema = new Schema({
+let ListedPotLuckItemSchema = new Schema({
     name: {
         type: String,
         required: true,
@@ -13,6 +13,22 @@ let PotLuckItemSchema = new Schema({
     }
 })
 
-let PotLuckItem = model('Potluck Item', PotLuckItemSchema)
+let NonListedPotLuckItemSchema = new Schema({
+    name: {
+        type: String,
+        required: true,
+        minlength: 1
+    },
+    item: {
+        type: String,
+        required: true,
+        minlength: 1
+    }
+})
 
-module.exports = { PotLuckItem };
+let ListedPotLuckItem = model('Listed Potluck Item', ListedPotLuckItemSchema)
+let NonListedPotLuckItem = model('NonListed Potluck Item', NonListedPotLuckItemSchema)
+
+
+
+module.exports = { ListedPotLuckItem, NonListedPotLuckItem };

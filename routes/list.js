@@ -1,22 +1,33 @@
 const express = require('express');
 
 const { mongoose } = require('../config/db');
-const { PotLuckItem } = require('../models/list');
+const { ListedPotLuckItem, NonListedPotLuckItem } = require('../models/list');
 const { Food } = require('../models/foods');
 
 const router = express.Router();
 
-router.get('/getPotLuckList', (req, res) => {
-    PotLuckItem.find()
-        .then(item => res.status(200).send({ item }))
+var potLuckList;
+router.get('/getPotLuckList', (req, res, next) => {
+    ListedPotLuckItem.find()
+        .then(item => {
+            potLuckList = [...item]
+        })
+        .catch(e => console.log(e))
+    next();
+}, (req, res) => {
+    NonListedPotLuckItem.find()
+        .then(item => {
+            potLuckList = [...potLuckList, ...item]
+            res.status(200).send(potLuckList);
+        })
         .catch(e => res.status(400).send(e))
 });
 
 router.post('/addPotLuckItem', (req, res) => {
-    let item = new PotLuckItem({
+    let item = new ListedPotLuckItem({
         name: req.body.name,
         item: req.body.item
-    })
+    });
 
     item.save()
         .then(it => {
@@ -29,7 +40,7 @@ router.post('/addPotLuckItem', (req, res) => {
 })
 
 router.delete(':plItem?', (req, res) => {
-    PotLuckItem.deleteOne({ item: req.query.plItem })
+    ListedPotLuckItem.deleteOne({ item: req.query.plItem })
         .then(response => {
             let food = new Food({
                 item: req.query.plItem
