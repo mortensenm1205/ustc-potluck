@@ -57,6 +57,23 @@ router.post('/addPotLuckItem', (req, res) => {
 
 router.delete(':plItem?', (req, res) => {
     NonListedPotLuckItem.find().then(nonItems => {
+        // This handles if Non Listed Array data is already/was empty.
+        if (nonItems.length === 0) {
+            return ListedPotLuckItem.deleteOne({ item: req.query.plItem })
+                .then(response => {
+                    let food = new Food({
+                        item: req.query.plItem
+                    })
+
+                    food.save()
+                        .then(food => res.status(200).send({ food }))
+                        .catch(e => res.status(400).send(e))
+
+                    console.log(response)
+                })
+                .catch(e => console.log(e))
+        }
+
         for (var i = 0; i < nonItems.length; i++) {
             if (nonItems[i].item === req.query.plItem) {
                 return NonListedPotLuckItem.deleteOne({ item: req.query.plItem})
