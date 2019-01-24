@@ -22,7 +22,7 @@ export const loadPotluckList = () => {
     }
 }
 
-export const addPotluckItem = (location, potLuckItem) => {
+export const addPotluckItem = potLuckItem => {
     return dispatch => {
         axios.post(
             '/api/plList/addPotLuckItem',
@@ -31,17 +31,17 @@ export const addPotluckItem = (location, potLuckItem) => {
                 item: potLuckItem.item
             }
         )
-        .then(res => res ? location.reload() : null)
+        .then(res => console.log(res))
         .catch(e => console.log(e))
     }
 }
 
-export const removePotluckItem = (location, potLuckItem) => {
+export const removePotluckItem = potLuckItem => {
     return dispatch => {
         axios.delete(
             '/api/plList',
             { params: { plItem: potLuckItem.item }})
-        .then(res => res ? location.reload() : null)
+        .then(res => console.log(res))
         .catch(e => console.log(e))
     }
 }

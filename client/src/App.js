@@ -35,14 +35,13 @@ class App extends Component {
     const { addPotluckListItem } = this.props;
     e.preventDefault();
     e.target.reset();
-    addPotluckListItem(window.location, entry);
     this.setState({ entry: {}});
-    this.forceUpdate();
+    addPotluckListItem(entry);
   }
 
   potLuckItemRemoval = (e, plLuckPerson) => {
     const { removePotluckListItem } = this.props;
-    removePotluckListItem(window.location, plLuckPerson);
+    removePotluckListItem(plLuckPerson);
   }
 
   render() {
@@ -66,8 +65,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getPotluckList: () => dispatch(loadPotluckList()),
-    addPotluckListItem: (location, potluckItem) => dispatch(addPotluckItem(location, potluckItem)),
-    removePotluckListItem: (location, potluckItem) => dispatch(removePotluckItem(location, potluckItem)),
+    addPotluckListItem: potluckItem => dispatch(addPotluckItem(potluckItem)),
+    removePotluckListItem: potluckItem => dispatch(removePotluckItem(potluckItem)),
     getFoodsList: () => dispatch(loadFoodList())
   }
 }
