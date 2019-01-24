@@ -36,7 +36,8 @@ class App extends Component {
     e.preventDefault();
     e.target.reset();
     addPotluckListItem(window.location, entry);
-    this.setState({ entry: {}})
+    this.setState({ entry: {}});
+    this.forceUpdate();
   }
 
   potLuckItemRemoval = (e, plLuckPerson) => {
