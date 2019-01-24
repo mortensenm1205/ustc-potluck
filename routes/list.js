@@ -7,20 +7,19 @@ const { Food } = require('../models/foods');
 const router = express.Router();
 
 var potLuckList;
-router.get('/getPotLuckList', (req, res, next) => {
+router.get('/getPotLuckList', (req, res) => {
     ListedPotLuckItem.find()
         .then(item => {
             potLuckList = [...item]
         })
-        .catch(e => console.log(e))
-    next();
-}, (req, res) => {
-    NonListedPotLuckItem.find()
-        .then(item => {
-            potLuckList = [...potLuckList, ...item]
-            res.status(200).send(potLuckList);
+        .then(() => {
+            NonListedPotLuckItem.find()
+                .then(item => {
+                    potLuckList = [...potLuckList, ...item]
+                    res.status(200).send(potLuckList);
+            })
         })
-        .catch(e => res.status(400).send(e))
+        .catch(e => console.log(e))
 });
 
 router.post('/addPotLuckItem', (req, res) => {
