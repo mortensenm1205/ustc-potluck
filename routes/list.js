@@ -6,20 +6,25 @@ const { Food } = require('../models/foods');
 
 const router = express.Router();
 
-var potLuckList;
-router.get('/getPotLuckList', (req, res) => {
-    ListedPotLuckItem.find()
+function getPotLuckData(req, res) {
+    let potLuckList = [];
+    return ListedPotLuckItem.find()
         .then(item => {
             potLuckList = [...item]
+            return potLuckList
         })
-        .then(() => {
-            NonListedPotLuckItem.find()
+        .then(plList => {
+            return NonListedPotLuckItem.find()
                 .then(item => {
-                    potLuckList = [...potLuckList, ...item]
+                    potLuckList = [...plList, ...item]
                     res.status(200).send(potLuckList);
+                })
             })
-        })
-        .catch(e => console.log(e))
+            .catch(e => console.log(e))
+}
+
+router.get('/getPotLuckList', (req, res) => {
+    getPotLuckData(req, res)
 });
 
 router.post('/addPotLuckItem', (req, res) => {
@@ -31,14 +36,14 @@ router.post('/addPotLuckItem', (req, res) => {
                     item: req.body.item
                 });
 
-                return listed_item.save()
+                listed_item.save()
                     .then(it => {
                         Food.deleteOne({ item: it.item })
                             .then(response => console.log(response))
                             .catch(e => console.log(e))
-                        res.status(200).send(it)
                     })
                     .catch(e => res.status(400).send(e));
+                return getPotLuckData(req, res)
             } else {
                 continue
             }
@@ -48,9 +53,11 @@ router.post('/addPotLuckItem', (req, res) => {
             item: req.body.item
         });
 
-        return non_listed_item.save()
-            .then(it => res.status(200).send(it))
+        non_listed_item.save()
+            .then(it => console.log(it))
             .catch(e => res.status(400).send(e))
+
+        return getPotLuckData(req, res)
     })
 })
 
@@ -65,10 +72,8 @@ router.delete(':plItem?', (req, res) => {
                     })
 
                     food.save()
-                        .then(food => res.status(200).send({ food }))
+                        .then(food => getPotLuckData(req, res))
                         .catch(e => res.status(400).send(e))
-
-                    console.log(response)
                 })
                 .catch(e => console.log(e))
         }
@@ -76,7 +81,7 @@ router.delete(':plItem?', (req, res) => {
         for (var i = 0; i < nonItems.length; i++) {
             if (nonItems[i].item === req.query.plItem) {
                 return NonListedPotLuckItem.deleteOne({ item: req.query.plItem})
-                    .then(response => res.status(200).send(response))
+                    .then(response => getPotLuckData(req, res))
                     .catch(e => res.status(400).send(e));
             } else { 
                 return ListedPotLuckItem.deleteOne({ item: req.query.plItem })
@@ -86,10 +91,8 @@ router.delete(':plItem?', (req, res) => {
                         })
 
                         food.save()
-                            .then(food => res.status(200).send({ food }))
+                            .then(food => getPotLuckData(req, res))
                             .catch(e => res.status(400).send(e))
-
-                        console.log(response)
                     })
                     .catch(e => console.log(e))
              }

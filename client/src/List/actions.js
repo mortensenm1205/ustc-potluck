@@ -7,13 +7,6 @@ export const loadPotluckListSuccess = potluckList => {
     }
 }
 
-export const addPotLuckItemSuccess = potLuckItem => {
-    return {
-        type: "LOAD_POTLUCK_LIST_SUCCESS",
-        data: potLuckItem
-    }
-}
-
 export const loadPotluckList = () => {
     return dispatch => {
         axios.get('/api/plList/getPotLuckList')
@@ -31,7 +24,7 @@ export const addPotluckItem = potLuckItem => {
                 item: potLuckItem.item
             }
         )
-        .then(res => console.log(res))
+        .then(res => dispatch(loadPotluckListSuccess(res.data)))
         .catch(e => console.log(e))
     }
 }
@@ -41,7 +34,7 @@ export const removePotluckItem = potLuckItem => {
         axios.delete(
             '/api/plList',
             { params: { plItem: potLuckItem.item }})
-        .then(res => console.log(res))
+        .then(res => dispatch(loadPotluckListSuccess(res.data)))
         .catch(e => console.log(e))
     }
 }
