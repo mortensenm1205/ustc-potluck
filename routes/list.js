@@ -6,10 +6,6 @@ const { Food } = require('../models/foods');
 
 const router = express.Router();
 
-function getPotLuckData(req, res) {
-    return 
-}
-
 router.get('/getPotLuckList', (req, res) => {
     var potLuckList = [];
     ListedPotLuckItem.find()

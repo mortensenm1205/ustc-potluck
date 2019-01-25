@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { loadFoodListSuccess } from '../Foods/actions';
 
 export const loadPotluckListSuccess = potluckList => {
     return {
@@ -44,6 +45,7 @@ export const addPotluckItem = potLuckItem => {
             const { listed_obj, non_listed_obj } = data;
             if(listed_obj !== undefined) {
                 dispatch(addPotluckItemSuccess(listed_obj));
+                dispatch(loadFoodListSuccess([]))
             } else if (non_listed_obj !== undefined) {
                 dispatch(addPotluckItemSuccess(non_listed_obj));
             }
