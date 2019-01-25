@@ -52,7 +52,7 @@ export const addPotluckItem = potLuckItem => {
     }
 }
 
-export const removePotluckItem = potLuckItem => {
+export const removePotluckItem = (potLuckItem, index) => {
     return dispatch => {
         axios.delete(
             '/api/plList',
@@ -61,11 +61,11 @@ export const removePotluckItem = potLuckItem => {
             const { data } = res;
             const { listed_obj, non_listed_obj } = data;
             if (listed_obj !== undefined) {
-                dispatch(removePotluckItemSuccess(listed_obj[0]));
-                // console.log(listed_obj[0])
+                dispatch(removePotluckItemSuccess(index));
+                // console.log(index)
             } else if (non_listed_obj !== undefined) {
-                dispatch(removePotluckItemSuccess(non_listed_obj[0]));
-                // console.log(non_listed_obj[0])
+                dispatch(removePotluckItemSuccess(index));
+                // console.log(index)
             }
         })
         .catch(e => console.log(e))
