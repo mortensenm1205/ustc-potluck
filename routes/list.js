@@ -82,7 +82,7 @@ router.delete(':plItem?', (req, res) => {
                 .catch(e => res.status(400).send(e))
             // We still need the removed listed object to be sent
             // as a response so that we can remove it in redux 
-            return ListedPotLuckItem.find({ item: "Forks" })
+            return ListedPotLuckItem.find({ item: req.query.plItem })
                         .then(listed_obj => res.status(200).send({ listed_obj }))
                         .catch(e => res.status(400).send(e))
         }
