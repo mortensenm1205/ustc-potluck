@@ -66,23 +66,32 @@ router.delete(':plItem?', (req, res) => {
     NonListedPotLuckItem.find().then(nonItems => {
         // This handles if Non Listed Array data is already/was empty.
         if (nonItems.length === 0) {
-            return ListedPotLuckItem.deleteOne({ item: req.query.plItem })
-                .then(response => {
+            ListedPotLuckItem.deleteOne({ item: req.query.plItem })
+                .then(deleted_response => {
                     let food = new Food({
                         item: req.query.plItem
                     })
 
                     food.save()
-                        .then(food => getPotLuckData(req, res))
-                        .catch(e => res.status(400).send(e))
+                        .then(new_food_item => {
+                            console.log("deleted_response: ", deleted_response)
+                            console.log("new_food_item: ", new_food_item)
+                        })
+                        .catch(e => console.log(e))
                 })
-                .catch(e => console.log(e))
+                .catch(e => res.status(400).send(e))
+            // We still need the removed listed object to be sent
+            // as a response so that we can remove it in redux 
+            return ListedPotLuckItem.find({ item: "Forks" })
+                        .then(listed_obj => res.status(200).send({ listed_obj }))
+                        .catch(e => res.status(400).send(e))
         }
+                    
 
         for (var i = 0; i < nonItems.length; i++) {
             if (nonItems[i].item === req.query.plItem) {
                 return NonListedPotLuckItem.deleteOne({ item: req.query.plItem})
-                    .then(response => getPotLuckData(req, res))
+                    .then(response => console.log(response))
                     .catch(e => res.status(400).send(e));
             } else { 
                 return ListedPotLuckItem.deleteOne({ item: req.query.plItem })
@@ -92,8 +101,9 @@ router.delete(':plItem?', (req, res) => {
                         })
 
                         food.save()
-                            .then(food => getPotLuckData(req, res))
+                            .then(food => console.log(food))
                             .catch(e => res.status(400).send(e))
+                        console.log(response)
                     })
                     .catch(e => console.log(e))
              }
