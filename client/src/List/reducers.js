@@ -10,6 +10,9 @@ export const loadPotluckData = (state = [], action) => {
                 ...state,
                 action.data
             ]
+
+        case "REMOVE_POTLUCK_ITEM_SUCCESS": 
+            return state.slice(state.indexOf(action.data), 1, 0)
         default:
             return state;
     }

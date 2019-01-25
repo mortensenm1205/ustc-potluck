@@ -51,6 +51,7 @@ class App extends Component {
         <Form formChange={this.formChange} formSubmit={this.formSubmit} />
         <List people={potluckList} remove={this.potLuckItemRemoval} />
         <Foods foods={foodList} />
+        {console.log(potluckList)}
       </AppContainer>
     );
   }
