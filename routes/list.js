@@ -7,8 +7,12 @@ const { Food } = require('../models/foods');
 const router = express.Router();
 
 function getPotLuckData(req, res) {
-    let potLuckList = [];
-    return ListedPotLuckItem.find()
+    return 
+}
+
+router.get('/getPotLuckList', (req, res) => {
+    var potLuckList = [];
+    ListedPotLuckItem.find()
         .then(item => {
             potLuckList = [...item]
             return potLuckList
@@ -19,12 +23,8 @@ function getPotLuckData(req, res) {
                     potLuckList = [...plList, ...item]
                     res.status(200).send(potLuckList);
                 })
-            })
-            .catch(e => console.log(e))
-}
-
-router.get('/getPotLuckList', (req, res) => {
-    getPotLuckData(req, res)
+        })
+        .catch(e => console.log(e))
 });
 
 router.post('/addPotLuckItem', (req, res) => {
@@ -36,14 +36,16 @@ router.post('/addPotLuckItem', (req, res) => {
                     item: req.body.item
                 });
 
-                listed_item.save()
-                    .then(it => {
-                        Food.deleteOne({ item: it.item })
-                            .then(response => console.log(response))
+                return listed_item.save()
+                    .then(listed_obj => {
+                        Food.deleteOne({ item: listed_obj.item })
+                            .then(deleted_response => {
+                                console.log(deleted_response);
+                                res.status(200).send({ listed_obj })
+                            })
                             .catch(e => console.log(e))
-                    })
+                        })
                     .catch(e => res.status(400).send(e));
-                return getPotLuckData(req, res)
             } else {
                 continue
             }
@@ -53,11 +55,10 @@ router.post('/addPotLuckItem', (req, res) => {
             item: req.body.item
         });
 
-        non_listed_item.save()
-            .then(it => console.log(it))
+        return non_listed_item.save()
+            .then(non_listed_obj => res.status(200).send({ non_listed_obj }))
             .catch(e => res.status(400).send(e))
 
-        return getPotLuckData(req, res)
     })
 })
 

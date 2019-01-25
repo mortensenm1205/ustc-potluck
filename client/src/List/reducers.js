@@ -5,6 +5,11 @@ export const loadPotluckData = (state = [], action) => {
                ...state,
                ...action.data
             ]
+        case "ADD_POTLUCK_ITEM_SUCCESS": 
+            return [
+                ...state,
+                action.data
+            ]
         default:
             return state;
     }

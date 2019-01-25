@@ -7,6 +7,13 @@ export const loadPotluckListSuccess = potluckList => {
     }
 }
 
+export const addPotluckItemSuccess = potLuckItem => {
+    return {
+        type: "ADD_POTLUCK_ITEM_SUCCESS",
+        data: potLuckItem
+    }
+}
+
 export const loadPotluckList = () => {
     return dispatch => {
         axios.get('/api/plList/getPotLuckList')
@@ -24,7 +31,15 @@ export const addPotluckItem = potLuckItem => {
                 item: potLuckItem.item
             }
         )
-        .then(res => dispatch(loadPotluckListSuccess(res.data)))
+        .then(res => {
+            const { data } = res;
+            const { listed_obj, non_listed_obj } = data;
+            if(listed_obj !== undefined) {
+                dispatch(addPotluckItemSuccess(listed_obj));
+            } else if (non_listed_obj !== undefined) {
+                dispatch(addPotluckItemSuccess(non_listed_obj));
+            }
+        })
         .catch(e => console.log(e))
     }
 }
