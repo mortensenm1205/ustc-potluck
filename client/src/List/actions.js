@@ -58,8 +58,15 @@ export const removePotluckItem = potLuckItem => {
             '/api/plList',
             { params: { plItem: potLuckItem.item }})
         .then(res => {
-            dispatch(removePotluckItemSuccess(res.data.listed_obj[0]))
-            // console.log(res)
+            const { data } = res;
+            const { listed_obj, non_listed_obj } = data;
+            if (listed_obj !== undefined) {
+                dispatch(removePotluckItemSuccess(listed_obj[0]));
+                // console.log(listed_obj[0])
+            } else if (non_listed_obj !== undefined) {
+                dispatch(removePotluckItemSuccess(non_listed_obj[0]));
+                // console.log(non_listed_obj[0])
+            }
         })
         .catch(e => console.log(e))
     }

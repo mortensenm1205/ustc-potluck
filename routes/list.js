@@ -90,22 +90,32 @@ router.delete(':plItem?', (req, res) => {
 
         for (var i = 0; i < nonItems.length; i++) {
             if (nonItems[i].item === req.query.plItem) {
-                return NonListedPotLuckItem.deleteOne({ item: req.query.plItem})
-                    .then(response => console.log(response))
-                    .catch(e => res.status(400).send(e));
+                NonListedPotLuckItem.deleteOne({ item: req.query.plItem})
+                    .then(deleted_response => console.log(deleted_response))
+                    .catch(e => console.log(e));
+
+                return NonListedPotLuckItem.find({ item: req.query.plItem })
+                    .then(non_listed_obj => res.status(200).send({ non_listed_obj }))
+                    .catch(e => res.status(400).send(e))
             } else { 
-                return ListedPotLuckItem.deleteOne({ item: req.query.plItem })
-                    .then(response => {
+                ListedPotLuckItem.deleteOne({ item: req.query.plItem })
+                    .then(deleted_response => {
                         let food = new Food({
                             item: req.query.plItem
                         })
 
                         food.save()
-                            .then(food => console.log(food))
-                            .catch(e => res.status(400).send(e))
-                        console.log(response)
+                            .then(new_food_item => {
+                                console.log("deleted_response: ", deleted_response)
+                                console.log("new_food_item: ", new_food_item)
+                            })
+                            .catch(e => console.log(e))
                     })
                     .catch(e => console.log(e))
+
+                return ListedPotLuckItem.find({ item: req.query.plItem })
+                    .then(listed_obj => res.status(200).send({ listed_obj }))
+                    .catch(e => res.status(400).send(e))
              }
         }
     })
