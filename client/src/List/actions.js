@@ -59,7 +59,7 @@ export const removePotluckItem = potLuckItem => {
             { params: { plItem: potLuckItem.item }})
         .then(res => {
             dispatch(removePotluckItemSuccess(res.data.listed_obj[0]))
-            // console.log(res.data.listed_obj[0])
+            // console.log(res)
         })
         .catch(e => console.log(e))
     }
