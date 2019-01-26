@@ -31,13 +31,14 @@ export const loadPotluckList = () => {
 
 
 export const addPotluckItem = (potLuckItem, callback) => {
+    let { name, item } = potLuckItem;
+    name = name.charAt(0).toUpperCase() + name.toLowerCase().slice(1);
+    item = item.charAt(0).toUpperCase() + item.toLowerCase().slice(1);
+
     return dispatch => {
         axios.post(
             '/api/plList/addPotLuckItem',
-            { 
-                name: potLuckItem.name, 
-                item: potLuckItem.item
-            }
+            { name, item }
         )
         .then(res => {
             const { data } = res;

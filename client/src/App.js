@@ -27,7 +27,8 @@ class App extends Component {
 
   formChange = e => {
     const { entry } = this.state;
-    this.setState({ entry: {...entry, [e.target.name]: e.target.value}})
+    let objToSend = {[e.target.name]: e.target.value};
+    this.setState({ entry: {...entry, ...objToSend}})
   }
 
   formSubmit = e => {
@@ -35,7 +36,6 @@ class App extends Component {
     const { addPotluckListItem, getFoodsList } = this.props;
     e.preventDefault();
     e.target.reset();
-    this.setState({ entry: {}});
     addPotluckListItem(entry, () => {
       getFoodsList();
     });
