@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { loadFoodListSuccess } from '../Foods/actions';
 
 export const loadPotluckListSuccess = potluckList => {
     return {
@@ -31,7 +30,7 @@ export const loadPotluckList = () => {
 }
 
 
-export const addPotluckItem = potLuckItem => {
+export const addPotluckItem = (potLuckItem, callback) => {
     return dispatch => {
         axios.post(
             '/api/plList/addPotLuckItem',
@@ -45,16 +44,17 @@ export const addPotluckItem = potLuckItem => {
             const { listed_obj, non_listed_obj } = data;
             if(listed_obj !== undefined) {
                 dispatch(addPotluckItemSuccess(listed_obj));
-                dispatch(loadFoodListSuccess([]))
+                callback();
             } else if (non_listed_obj !== undefined) {
                 dispatch(addPotluckItemSuccess(non_listed_obj));
+                callback();
             }
         })
         .catch(e => console.log(e))
     }
 }
 
-export const removePotluckItem = (potLuckItem, index) => {
+export const removePotluckItem = (potLuckItem, index, callback) => {
     return dispatch => {
         axios.delete(
             '/api/plList',
@@ -64,10 +64,10 @@ export const removePotluckItem = (potLuckItem, index) => {
             const { listed_obj, non_listed_obj } = data;
             if (listed_obj !== undefined) {
                 dispatch(removePotluckItemSuccess(index));
-                // console.log(index)
+                callback();
             } else if (non_listed_obj !== undefined) {
                 dispatch(removePotluckItemSuccess(index));
-                // console.log(index)
+                callback();
             }
         })
         .catch(e => console.log(e))
