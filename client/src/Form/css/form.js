@@ -2,17 +2,23 @@ import styled from 'styled-components';
 
 export const Form = styled.div`
     grid-column: 1 / -1;
-    border: 2px solid;
+    border: 6px solid #000;
+    background-color: #fff;
+    padding: 1% 4%;
 
     @media(min-width: 800px) {
         grid-column: 3 / 7;
-        grid-row: 1 / auto;
+        grid-row: 1 / 3;
+        border: 12px solid #000;
+        padding: 3% 4%;
+
     }
 `;
 
 export const Title = styled.p`
     font-size: 2rem;
     font-weight: 900;
+    color: #b01e25;
 `;
 
 export const SubTitle = styled.p`
@@ -26,7 +32,6 @@ export const Input = styled.input`
     font-size: 1.4rem;
     margin: 0 0 5%;
     padding: 4% 0;
-    background-color: #f5f5f5;
     border: none;
     border-bottom: 2px solid #ccc;
 
@@ -44,7 +49,7 @@ export const Button = styled.button`
     border-radius: 20px;
     margin: 2.5% 0;
     padding: 3% 2.5%;
-    width: 150px;
+    width: 100%;
 
     :hover {
         background-color: #0761a9f5
@@ -52,5 +57,9 @@ export const Button = styled.button`
 
     :focus {
         outline: 0;
+    }
+
+    @media(min-width: 800px) {
+        width: 150px;
     }
 `;

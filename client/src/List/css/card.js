@@ -7,7 +7,7 @@ export const Card = styled.div`
     width: 90%;
     display: inline-block;
     box-sizing: border-box;
-    box-shadow: 1px 17px 24px 5px #e0e0e0;
+    box-shadow: 4px 9px 32px -10px #000;
     margin: 0 3% 4% 0;
     padding: 2.3%;
 `;
@@ -22,13 +22,11 @@ export const CardItem = styled.p`
 
 export const CloseCard = styled.button`
     position: absolute;
-    top: -17px;
-    left: -14px;
+    top: 10px;
+    left: 220px;
     border: none;
-    border-radius: 30px;
-    box-shadow: 9px 7px 14px -9px;
-    padding: 3% 7%;
     font-size: 1.6rem;
+    background-color: #fff;
 
     :hover {
         background-color: #f93e3e;
@@ -43,5 +41,9 @@ export const CloseCard = styled.button`
 
     :focus {
         outline: 0;
+    }
+
+    @media(min-width: 800px) {
+        left: 315px;
     }
 `;

@@ -8,6 +8,7 @@ export const AppContainer = styled.div`
     font-size: 18px;
     font-family: 'Roboto', sans-serif;
     padding: 2.5%;
+    color: #626262;
     
     @media(min-width: 800px) {
         grid-template-rows: repeat(4, auto);
