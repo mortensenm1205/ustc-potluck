@@ -2,9 +2,11 @@ import styled from 'styled-components';
 
 export const Form = styled.div`
     grid-column: 1 / -1;
+    border: 2px solid;
 
     @media(min-width: 800px) {
         grid-column: 3 / 7;
+        grid-row: 1 / auto;
     }
 `;
 

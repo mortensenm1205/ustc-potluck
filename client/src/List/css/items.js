@@ -3,9 +3,10 @@ import styled from 'styled-components';
 export const Items = styled.div`
     grid-column: 1 / -1;
     text-align: center;
+    border: 2px solid;
 
     @media(min-width: 800px) {
-        grid-column: 7 / -1;
+        grid-column: 7 / 10;
         text-align: left;
     }
 `;

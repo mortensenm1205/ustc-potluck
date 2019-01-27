@@ -2,9 +2,10 @@ import styled from 'styled-components';
 
 export const List = styled.div`
     grid-column: 1 / -1;
+    border: 2px solid;
 
     @media(min-width: 800px) {
-        grid-column: 3 / 10;
+        grid-column: 7 / 10;
     }
 `;
 
