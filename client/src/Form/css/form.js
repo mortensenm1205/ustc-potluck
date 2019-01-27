@@ -5,9 +5,10 @@ export const Form = styled.div`
     border: 6px solid #000;
     background-color: #fff;
     padding: 1% 4%;
+    box-shadow: 3px 12px 32px -8px #000;
 
     @media(min-width: 800px) {
-        grid-column: 3 / 7;
+        grid-column: 4 / 7;
         grid-row: 1 / 3;
         border: 12px solid #000;
         padding: 3% 4%;

@@ -5,6 +5,7 @@ export const Items = styled.div`
     border: 6px solid #000;
     background-color: #fff;
     padding: 1% 4%;
+    box-shadow: 3px 12px 32px -8px #000;
     
     @media(min-width: 800px) {
         grid-column: 7 / 10;
