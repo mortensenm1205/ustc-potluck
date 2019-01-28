@@ -14,6 +14,13 @@ export const addPotluckItemSuccess = potLuckItem => {
     }
 }
 
+export const addPotluckItemFailure = error_code => {
+    return {
+        type: "ADD_POTLUCK_ITEM_FAILURE",
+        data: error_code
+    }
+}
+
 export const removePotluckItemSuccess = potLuckItem => {
     return {
         type: "REMOVE_POTLUCK_ITEM_SUCCESS",
@@ -56,7 +63,9 @@ export const addPotluckItem = (potLuckItem, callback) => {
                 callback();
             }
         })
-        .catch(e => console.log(e))
+        .catch(e => {
+            
+        })
     }
 }
 
