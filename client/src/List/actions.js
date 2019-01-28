@@ -32,6 +32,11 @@ export const loadPotluckList = () => {
 
 export const addPotluckItem = (potLuckItem, callback) => {
     let { name, item } = potLuckItem;
+    // Name and item are 1 value a piece. 
+    // This removes any other item added
+    // And capitalizes the first letter of the value. 
+    name = name.split(" ").slice(0, 1).join("");
+    item = item.split(" ").slice(0, 1).join("");
     name = name.charAt(0).toUpperCase() + name.toLowerCase().slice(1);
     item = item.charAt(0).toUpperCase() + item.toLowerCase().slice(1);
 
