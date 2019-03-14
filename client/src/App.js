@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import uniqid from 'uniqid';
 
-import { AppContainer } from './app_css';
+import { AppContainer } from './css';
 import Foods from './Foods/';
 import List from './List/';
 import Form from './Form/';
