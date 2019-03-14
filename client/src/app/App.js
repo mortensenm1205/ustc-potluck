@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import uniqid from 'uniqid';
 
 import { AppContainer } from './css';
-import Foods from './Foods/';
-import List from './List/';
-import Form from './Form/';
+import Foods from './Foods';
+import List from './List';
+import Form from './Form';
 import { loadPotluckList, addPotluckItem, removePotluckItem } from './List/ducks/actions';
 import { loadFoodList } from './Foods/ducks/actions';
 
