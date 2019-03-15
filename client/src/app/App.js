@@ -52,6 +52,13 @@ class App extends Component {
     const { potluckList, foodList } = this.props;
     return (
       <AppContainer>
+        <div 
+          style={{ 
+            height: '300px', 
+            backgroundColor: 'rgb(13, 75, 153)', 
+            gridColumn: '1 / -1', 
+            gridRow: '1 / -1'
+        }}/>
         {/* <Form formChange={this.formChange} formSubmit={this.formSubmit} /> */}
         <List people={potluckList} remove={this.potLuckItemRemoval} />
         <Foods foods={foodList} />
