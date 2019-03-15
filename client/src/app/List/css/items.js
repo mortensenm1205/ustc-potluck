@@ -8,7 +8,7 @@ export const Items = styled.div`
     @media(min-width: 800px) {
         // Making Items and Foods comp center.
         grid-column: 4 / 7;
-        grid-row: 1 / -1;
+        grid-row: 2 / -1;
         padding: 3% 4%;
         border: none;
 
@@ -32,4 +32,5 @@ export const Title = styled.p`
     font-size: 2rem;
     font-weight: 900;
     color: #fff;
+    margin: 6.5% 0;
 `;

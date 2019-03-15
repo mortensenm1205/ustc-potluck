@@ -7,13 +7,14 @@ export const Card = styled.div`
     width: 90%;
     display: inline-block;
     box-sizing: border-box;
-    box-shadow: 4px 9px 32px -10px #000;
+    box-shadow: -9px 10px 14px -9px rgba(0,0,0,0.75);
     margin: 0 3% 4% 0;
     padding: 2.3%;
 `;
 
 export const CardName = styled.p`
     font-weight: 700;
+    margin: 4% 0;
 `;
 
 export const CardItem = styled.p`
@@ -27,6 +28,7 @@ export const CloseCard = styled.button`
     border: none;
     font-size: 1.6rem;
     background-color: #fff;
+    padding: 1% 2%;
 
     :hover {
         background-color: #f93e3e;
@@ -44,6 +46,6 @@ export const CloseCard = styled.button`
     }
 
     @media(min-width: 800px) {
-        left: 315px;
+        left: 344px;
     }
 `;
