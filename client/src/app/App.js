@@ -59,7 +59,7 @@ class App extends Component {
             gridColumn: '1 / -1', 
             gridRow: '1 / -1'
         }}/>
-        {/* <Form formChange={this.formChange} formSubmit={this.formSubmit} /> */}
+        <Form formChange={this.formChange} formSubmit={this.formSubmit} />
         <List people={potluckList} remove={this.potLuckItemRemoval} />
         <Foods foods={foodList} />
       </AppContainer>
