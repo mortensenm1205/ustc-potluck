@@ -52,7 +52,7 @@ class App extends Component {
     const { potluckList, foodList } = this.props;
     return (
       <AppContainer>
-        <Form formChange={this.formChange} formSubmit={this.formSubmit} />
+        {/* <Form formChange={this.formChange} formSubmit={this.formSubmit} /> */}
         <List people={potluckList} remove={this.potLuckItemRemoval} />
         <Foods foods={foodList} />
       </AppContainer>
