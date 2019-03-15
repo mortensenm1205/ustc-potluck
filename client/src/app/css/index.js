@@ -2,7 +2,11 @@ import styled, { createGlobalStyle } from 'styled-components';
 
 export const Base = createGlobalStyle`
     html,
-    body {
+    body,
+    div,
+    section,
+    button,
+    p {
         padding: 0;
         margin: 0;
     }
