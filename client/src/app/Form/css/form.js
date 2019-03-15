@@ -1,17 +1,22 @@
 import styled from 'styled-components';
 
-export const Form = styled.div`
-    @media(min-width: 800px) {}
+export const FormHolder = styled.div`
+    margin: 5% 0 0 5%;
 `;
 
 export const Title = styled.p`
     font-size: 2rem;
     font-weight: 900;
     color: #b01e25;
+    margin: 2.5% 0;
 `;
 
 export const SubTitle = styled.p`
     line-height: 30px;
+`;
+
+export const Form = styled.form`
+    margin: 1.5% 0;
 `;
 
 export const Input = styled.input`
@@ -20,6 +25,7 @@ export const Input = styled.input`
     font-size: 1.4rem;
     border: none;
     border-bottom: 2px solid #ccc;
+    margin: 7% 0;
 
     :focus {
         outline: 0;
