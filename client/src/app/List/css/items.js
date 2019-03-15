@@ -2,17 +2,15 @@ import styled from 'styled-components';
 
 export const Items = styled.div`
     grid-column: 1 / -1;
-    background-color: #fff;
-    padding: 1% 4%;
-    box-shadow: 3px 12px 32px -8px #000;
+    // Don't need it for rn.
+    // background-color: #f5f3f3;
     
     @media(min-width: 800px) {
         // Making Items and Foods comp center.
         grid-column: 4 / 7;
-        grid-row: 2 / -1;
-        height: 375px;
-        overflow-y: scroll;
+        grid-row: 1 / -1;
         padding: 3% 4%;
+        border: none;
 
         ::-webkit-scrollbar {
             width: 12px;
@@ -33,5 +31,5 @@ export const Items = styled.div`
 export const Title = styled.p`
     font-size: 2rem;
     font-weight: 900;
-    color: #b01e25;
+    color: #fff;
 `;
