@@ -2,16 +2,11 @@ import styled from 'styled-components';
 
 export const List = styled.div`
     grid-column: 1 / -1;
-    background-color: #fff;
-    padding: 1% 4%;
-    box-shadow: 3px 12px 32px -8px #000;
 
     @media(min-width: 800px) {
         // Making comp center alongside Items
         grid-column: 7 / 10;
         grid-row: 2 / -1;
-        // Fixed height when there are no items.
-        height: 375px;
         padding: 3% 4%;
     }
 `;
@@ -19,7 +14,8 @@ export const List = styled.div`
 export const Title = styled.p`
     font-size: 2rem;
     font-weight: 900;
-    color: #b01e25;
+    color: #fff;
+    margin: 6.5% 0;
 `;
 
 export const Section = styled.section`
@@ -30,4 +26,6 @@ export const Section = styled.section`
     flex-wrap: wrap;
     flex-direction: column
     justify-content: flex-start;
+    background-color: #fff;
+    box-shadow: -19px 20px 74px -26px rgba(0,0,0,0.75);
 `;
