@@ -5,6 +5,7 @@ export const Base = createGlobalStyle`
     body,
     div,
     section,
+    input,
     button,
     p {
         padding: 0;
