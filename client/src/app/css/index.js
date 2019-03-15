@@ -31,5 +31,6 @@ export const AppContainer = styled.div`
         // For easier placement of comps.
         grid-template-rows: repeat(3, 100px);
         padding: 0;
+        position: relative;
     }
 `;
