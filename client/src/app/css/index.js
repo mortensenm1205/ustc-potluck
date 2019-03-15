@@ -1,6 +1,12 @@
 import styled, { createGlobalStyle } from 'styled-components';
 
 export const Base = createGlobalStyle`
+    html,
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
     html {
         background: rgb(245,243,243);
         font-size: 16px;
