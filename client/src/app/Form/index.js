@@ -20,10 +20,11 @@ class FormContainer extends Component {
         return(
             <div>
                 {/* Using that state here */}
-                <OpenModalButton onClick={this.open}>+</OpenModalButton>
+                <OpenModalButton onClick={this.open}><span>+</span></OpenModalButton>
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onRequestClose={this.close}
+                    shouldCloseOnOverlayClick={false}
                     // Using a custom style to handle height and width
                     style={customModalStyles}
                 >

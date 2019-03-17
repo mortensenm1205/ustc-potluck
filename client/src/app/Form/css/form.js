@@ -7,7 +7,7 @@ export const FormHolder = styled.div`
 export const Title = styled.p`
     font-size: 2rem;
     font-weight: 900;
-    color: #b01e25;
+    color: #f93e3e;
     margin: 2.5% 0;
 `;
 
