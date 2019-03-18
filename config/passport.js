@@ -8,11 +8,15 @@ const User = mongoose.model('User');
 
 module.exports = passport => {
     passport.use(new Strategy((username, password, done) => {
-        console.log(username, password);
-        User.find({ password })
+        console.log(req)
+        User.findOne({ password })
             .then((user) => {
-                console.log(user);
+                if(!user) return done(null, false);
+                if(user.password === password) return done(null, user);
             })
-            .catch(err => done(err));
+            .catch(err => {
+                console.error(err)
+                done(err)
+            });
     }));
 }
