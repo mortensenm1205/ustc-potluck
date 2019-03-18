@@ -1,6 +1,5 @@
 const express = require('express');
 const passport = require('passport'); 
-const bcrypt = require('bcryptjs');
 
 const { mongoose } = require('../config/db');
 const { User } = require('../models/user');
@@ -18,14 +17,8 @@ router.post('/new', (req, res) => {
         password: req.body.password
     });
 
-    user.setPassHash(req.body.password);
     return user.save()
-        .then(response => {
-            bcrypt.compare(req.body.password, response.password, (err, result) => {
-                console.log("RESULT: " + result);
-            })
-            res.status(200).send(response)
-        })
+        .then(response => res.status(200).send(response))
         .catch(err => {
             console.error(err)
             res.status(400).send(err)
@@ -33,8 +26,8 @@ router.post('/new', (req, res) => {
 });
 
 router.post('/', passport.authenticate('local', { session: false }), (req, res) => {
-    console.log(req);
-    res.end();
+    console.log(req.body)
+    if(req.user) res.status(200).json({ success: true });
 })
 
 module.exports = router;
