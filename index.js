@@ -14,7 +14,8 @@ const port = process.env.PORT || 5000;
 require('./config/passport')(passport);
 app.use(passport.initialize());
 
-app.use(express.static(path.join(__dirname, 'client/build')))
+app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json(), cors());
 app.use('/api/foods', foods);
 app.use('/api/plList', list);
