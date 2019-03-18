@@ -35,6 +35,7 @@ class FormContainer extends Component {
         addPotluckListItem(entry, () => {
             getFoodsList();
         });
+        this.close();
     }
 
     render() {
