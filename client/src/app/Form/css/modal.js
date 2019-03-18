@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 export const OpenModalButton = styled.button`
     padding: 1.6%;
-    font-size: 2.5em;
     border-radius: 50px;
     border: none;
     background-color: #f93e3e;
@@ -27,6 +26,13 @@ export const OpenModalButton = styled.button`
         position: absolute;
         top: -15.8%;
         right: 20%;
+        font-size: 2.5em;
+
+        @media(min-width: 1600px) {
+            font-size: 4em;
+            top: -1.8%;
+            right: 24%;
+        }
     }
 `;
 
@@ -45,6 +51,11 @@ export const CloseModalButton = styled.button`
 
     :hover {
         background-color: #b01e25;
+    }
+
+    @media(min-width: 1600px) {
+        padding: 1% 1.2%;
+        right: 31.2%;
     }
 `;
 
