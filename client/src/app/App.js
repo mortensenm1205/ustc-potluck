@@ -6,7 +6,7 @@ import { AppContainer } from './css';
 import Foods from './Foods';
 import List from './List';
 import Form from './Form';
-import { loadPotluckList, addPotluckItem, removePotluckItem } from './List/ducks/actions';
+import { loadPotluckList, removePotluckItem } from './List/ducks/actions';
 import { loadFoodList } from './Foods/ducks/actions';
 
 class App extends Component {
@@ -16,29 +16,12 @@ class App extends Component {
       { id: uniqid(), name: 'Hamburger Buns' },
       { id: uniqid(), name: 'Chips' }
     ],
-    entry: {}
   }
 
   componentDidMount() {
     const { getPotluckList, getFoodsList } = this.props;
     getPotluckList();
     getFoodsList();
-  }
-
-  formChange = e => {
-    const { entry } = this.state;
-    let objToSend = {[e.target.name]: e.target.value};
-    this.setState({ entry: {...entry, ...objToSend}})
-  }
-
-  formSubmit = e => {
-    const { entry } = this.state;
-    const { addPotluckListItem, getFoodsList } = this.props;
-    e.preventDefault();
-    e.target.reset();
-    addPotluckListItem(entry, () => {
-      getFoodsList();
-    });
   }
 
   potLuckItemRemoval = (e, plLuckPerson, index) => {
@@ -76,7 +59,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getPotluckList: () => dispatch(loadPotluckList()),
-    addPotluckListItem: (potluckItem, callback) => dispatch(addPotluckItem(potluckItem, callback)),
     removePotluckListItem: (potluckItem, index, callback) => dispatch(removePotluckItem(potluckItem, index, callback)),
     getFoodsList: () => dispatch(loadFoodList())
   }
