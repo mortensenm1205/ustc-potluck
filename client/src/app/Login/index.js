@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 import { FormHolder, Form, Input, Button, Title, SubTitle } from './css/form';
 import { customModalStyles, OpenModalButton, CloseModalButton } from './css/modal';
@@ -14,7 +15,7 @@ class LoginContainer extends Component {
 
     state = {
         modalIsOpen: false,
-        entry: {}
+        authEntry: {}
     }
 
     // This allows the modal to open and close. 
@@ -22,19 +23,15 @@ class LoginContainer extends Component {
     close = () => this.setState({ modalIsOpen: false });
 
     formChange = e => {
-        const { entry } = this.state;
+        const { authEntry } = this.state;
         let objToSend = { [e.target.name]: e.target.value };
-        this.setState({ entry: { ...entry, ...objToSend } })
+        this.setState({ authEntry: { ...authEntry, ...objToSend } })
     }
 
     formSubmit = e => {
-        const { entry } = this.state;
-        const { addPotluckListItem, getFoodsList } = this.props;
+        const { authEntry } = this.state;
         e.preventDefault();
-        e.target.reset();
-        addPotluckListItem(entry, () => {
-            getFoodsList();
-        });
+        console.log(authEntry);
         this.close();
     }
 
@@ -51,12 +48,12 @@ class LoginContainer extends Component {
                     style={customModalStyles}
                 >
                     <FormHolder>
-                        <Title>Enter your item</Title>
-                        <SubTitle>Enter your name and the item you're bringing to the potluck.</SubTitle> 
+                        <Title>Credentials</Title>
+                        <SubTitle>Enter username and password to access editable list.</SubTitle> 
                         <Form onSubmit={this.formSubmit}>
-                                <Input type="text" placeholder="Name" name="name" onChange={this.formChange} />
-                                <Input type="text" placeholder="Item" name="item" onChange={this.formChange} />
-                                <Button>Sign up</Button>
+                                <Input type="text" placeholder="Username" name="username" onChange={this.formChange} />
+                                <Input type="password" placeholder="Password" name="password" onChange={this.formChange} />
+                                <Button>Login</Button>
                         </Form>
                     </FormHolder>
                     {/* Just using the same method as above to close. */}
