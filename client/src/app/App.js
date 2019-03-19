@@ -47,7 +47,7 @@ class App extends Component {
             gridColumn: '1 / -1', 
             gridRow: '1 / -1'
         }}/>
-        <Form formChange={this.formChange} formSubmit={this.formSubmit} />
+        <Form />
         <Login />
         <List people={potluckList} remove={this.potLuckItemRemoval} />
         <Foods foods={foodList} />
