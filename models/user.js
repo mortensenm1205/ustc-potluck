@@ -20,6 +20,7 @@ UserSchema.methods.setPassHash = function(pass) {
     return this.password = hash;
 }
 
+// Using this in passport.js to compare password values before auth user.
 UserSchema.statics.comparePassHash = function (entered_pass, saved_pass) {
     return bcrypt.compareSync(entered_pass, saved_pass);;
 }

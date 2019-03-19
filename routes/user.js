@@ -7,10 +7,7 @@ const { User } = require('../models/user');
 const router = express.Router();
 
 // This route won't be used on the front end
-// It's really to test if an empty password
-// field will have the default schema value
-// kick in and then be hashed before saving to the 
-// collection. 
+// Just used for testing on creating a user.
 router.post('/new', (req, res) => {
     let user = new User({
         username: req.body.username,
