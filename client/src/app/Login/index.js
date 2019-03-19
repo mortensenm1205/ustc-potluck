@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 
 import { FormHolder, Form, Input, Button, Title, SubTitle } from './css/form';
 import { customModalStyles, OpenModalButton, CloseModalButton } from './css/modal';
 import Modal from 'react-modal';
 
-import { addPotluckItem } from '../List/ducks/actions';
-import { loadFoodList } from '../Foods/ducks/actions';
+import { loginUser } from './ducks/actions';
 
 Modal.setAppElement('#root');
 
@@ -30,10 +28,9 @@ class LoginContainer extends Component {
 
     formSubmit = e => {
         const { authEntry } = this.state;
+        const { login } = this.props;
         e.preventDefault();
-        axios.post('/api/user/', { username: authEntry.username, password: authEntry.password })
-            .then(res => console.log(res))
-            .catch(err => console.error(err))
+        login(authEntry)
         this.close();
     }
 
@@ -75,8 +72,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addPotluckListItem: (potluckItem, callback) => dispatch(addPotluckItem(potluckItem, callback)),
-        getFoodsList: () => dispatch(loadFoodList())
+        login: userData => dispatch(loginUser(userData))
     }
 }
 
