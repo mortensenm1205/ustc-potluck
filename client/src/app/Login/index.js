@@ -31,7 +31,9 @@ class LoginContainer extends Component {
     formSubmit = e => {
         const { authEntry } = this.state;
         e.preventDefault();
-        console.log(authEntry);
+        axios.post('/api/user/', { username: authEntry.username, password: authEntry.password })
+            .then(res => console.log(res))
+            .catch(err => console.error(err))
         this.close();
     }
 
