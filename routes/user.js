@@ -11,12 +11,13 @@ const router = express.Router();
 // field will have the default schema value
 // kick in and then be hashed before saving to the 
 // collection. 
-
 router.post('/new', (req, res) => {
     let user = new User({
+        username: req.body.username,
         password: req.body.password
     });
 
+    user.setPassHash(req.body.password);
     return user.save()
         .then(response => res.status(200).send(response))
         .catch(err => {
@@ -26,7 +27,6 @@ router.post('/new', (req, res) => {
 });
 
 router.post('/', passport.authenticate('local', { session: false }), (req, res) => {
-    console.log(req.body)
     if(req.user) res.status(200).json({ success: true });
 })
 
