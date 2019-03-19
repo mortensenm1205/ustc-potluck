@@ -6,6 +6,7 @@ import { AppContainer } from './css';
 import Foods from './Foods';
 import List from './List';
 import Form from './Form';
+import Login from './Login';
 import { loadPotluckList, removePotluckItem } from './List/ducks/actions';
 import { loadFoodList } from './Foods/ducks/actions';
 
@@ -35,6 +36,10 @@ class App extends Component {
     const { potluckList, foodList } = this.props;
     return (
       <AppContainer>
+        {/* 
+          This is for the blue background divder. 
+          Felt like it was easier to do this way than a styled-component
+        */}
         <div 
           style={{ 
             height: '300px', 
@@ -43,6 +48,7 @@ class App extends Component {
             gridRow: '1 / -1'
         }}/>
         <Form formChange={this.formChange} formSubmit={this.formSubmit} />
+        <Login />
         <List people={potluckList} remove={this.potLuckItemRemoval} />
         <Foods foods={foodList} />
       </AppContainer>

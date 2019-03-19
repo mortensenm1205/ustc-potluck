@@ -8,8 +8,8 @@ export const OpenModalButton = styled.button`
     background-color: #f93e3e;
     color: #fff;
     position: absolute;
-    top: 25px;
-    right: 20px;
+    top: 7%;
+    right: 1.5%;
     cursor: pointer;
     outline: none;
     width: 2.3%;
