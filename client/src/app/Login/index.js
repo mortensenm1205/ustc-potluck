@@ -28,16 +28,17 @@ class LoginContainer extends Component {
 
     formSubmit = e => {
         const { authEntry } = this.state;
-        const { login, activeUser } = this.props;
+        const { login } = this.props;
         e.preventDefault();
         login(authEntry);
-        console.log(activeUser);
         this.close();
     }
 
     render() {
+        const { activeUser } = this.props;
         return(
             <div>
+                {console.log(activeUser)}
                 {/* Using that state here */}
                 <OpenModalButton onClick={this.open}><span>+</span></OpenModalButton>
                 <Modal
