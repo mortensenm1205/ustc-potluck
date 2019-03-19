@@ -7,11 +7,12 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
 module.exports = passport => {
-    passport.use(new Strategy((username, password, done) => {
-        User.findOne({ username })
+    // The passReqToCallback allows for req/req.body to be used
+    passport.use(new Strategy({ passReqToCallback: true }, (req, username, password, done) => {
+        User.findOne({ username: req.body.username })
             .then((user) => {
                 if(!user) return done(null, false);
-                if(!User.comparePassHash(password, user.password)) return done(null, false);
+                if(!User.comparePassHash(req.body.password, user.password)) return done(null, false);
                 return done(null, user);
             })
             .catch(err => {
