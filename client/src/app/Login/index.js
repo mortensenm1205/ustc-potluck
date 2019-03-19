@@ -28,9 +28,10 @@ class LoginContainer extends Component {
 
     formSubmit = e => {
         const { authEntry } = this.state;
-        const { login } = this.props;
+        const { login, activeUser } = this.props;
         e.preventDefault();
-        login(authEntry)
+        login(authEntry);
+        console.log(activeUser);
         this.close();
     }
 
@@ -65,8 +66,7 @@ class LoginContainer extends Component {
 
 const mapStateToProps = state => {
     return {
-        potluckList: state.loadPotluckData,
-        foodList: state.loadFoodData
+        activeUser: state.activeUserBool
     }
 }
 
