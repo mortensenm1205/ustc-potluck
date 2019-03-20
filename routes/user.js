@@ -23,7 +23,7 @@ router.post('/new', (req, res) => {
         });
 });
 
-router.post('/', passport.authenticate('local', { session: false }), (req, res) => {
+router.post('/', passport.authenticate('local'), (req, res) => {
     if(req.user) res.status(200).json({ success: true });
 })
 
