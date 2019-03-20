@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { FormHolder, Form, Input, Button, Title, SubTitle } from './css/form';
 import { customModalStyles, OpenModalButton, CloseModalButton } from './css/modal';
 import Modal from 'react-modal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser } from '@fortawesome/free-solid-svg-icons';
 
 import { loginUser } from './ducks/actions';
 
@@ -35,12 +37,12 @@ class LoginContainer extends Component {
     }
 
     render() {
-        const { activeUser } = this.props;
         return(
             <div>
-                {console.log(activeUser)}
                 {/* Using that state here */}
-                <OpenModalButton onClick={this.open}><span>+</span></OpenModalButton>
+                <OpenModalButton onClick={this.open}>
+                    <span><FontAwesomeIcon icon={faUser} /></span>
+                </OpenModalButton>
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onRequestClose={this.close}
@@ -66,9 +68,7 @@ class LoginContainer extends Component {
 }
 
 const mapStateToProps = state => {
-    return {
-        activeUser: state.activeUserBool
-    }
+    return {}
 }
 
 const mapDispatchToProps = dispatch => {
