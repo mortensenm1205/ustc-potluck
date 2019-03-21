@@ -7,14 +7,14 @@ const FoodContainer = ({ foods, activeUser }) => {
     return(
         <List>
             <Title>What's left to bring: </Title>
-            {foods.map(food => {
-                return activeUser.success ? 
-                <textarea defaultValue={food.item} key={food._id} />
-            :  
-                <Section key={food._id}>
-                    <FoodItem food={food} />
-                </Section>
-            })}
+            <Section >
+                {foods.map(food => {
+                    return activeUser.success ? 
+                    <textarea defaultValue={food.item} key={food._id} />
+                :  
+                    <FoodItem food={food} key={food._id}/>
+                })}
+            </Section>
         </List>
     )
 }
