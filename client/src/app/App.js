@@ -28,12 +28,6 @@ class App extends Component {
     if ((prevState.activeUser !== this.state.activeUser) && prevProps.activeUser.expires < currentTime) {
       this.setState({ activeUser: prevProps.activeUser })
     }
-
-    // if (this.state.activeUser.success && this.state.activeUser.expires !== 0) {
-    //   window.localStorage.setItem('acitveUser', JSON.stringify(this.state.activeUser));
-    // } else {
-    //   window.localStorage.removeItem('activeUser');
-    // }
   }
 
   componentDidMount() {
@@ -58,7 +52,6 @@ class App extends Component {
           This is for the blue background divder. 
           Felt like it was easier to do this way than a styled-component
         */}
-        {console.log("PROPS: ", this.props.activeUser, "STATE: ", this.state.activeUser)}
         <div 
           style={{ 
             height: '300px', 
