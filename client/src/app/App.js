@@ -12,9 +12,18 @@ import { loadFoodList } from './Foods/ducks/actions';
 class App extends Component {
 
   componentDidMount() {
-    const { getPotluckList, getFoodsList } = this.props;
+    const { getPotluckList, getFoodsList, activeUser } = this.props;
     getPotluckList();
     getFoodsList();
+
+    // testing to see how i can set localstorage to save activeUser
+    // currently this isn't working
+    // will have to use this in another lc method.
+    if(activeUser.success && activeUser.expires !== 0) {
+      window.localStorage.setItem('acitveUser', JSON.stringify(activeUser));
+    } else {
+      window.localStorage.removeItem('activeUser');
+    }
   }
 
   potLuckItemRemoval = (e, plLuckPerson, index) => {
@@ -25,13 +34,14 @@ class App extends Component {
   }
 
   render() {
-    const { potluckList, foodList } = this.props;
+    const { potluckList, foodList, activeUser } = this.props;
     return (
       <AppContainer>
         {/* 
           This is for the blue background divder. 
           Felt like it was easier to do this way than a styled-component
         */}
+        {console.log(activeUser)}
         <div 
           style={{ 
             height: '300px', 
@@ -50,7 +60,8 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     potluckList: state.loadPotluckData,
-    foodList: state.loadFoodData
+    foodList: state.loadFoodData,
+    activeUser: state.activeUser
   }
 }
 
