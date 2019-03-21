@@ -6,7 +6,8 @@ import { Card, CardName, CardItem, CloseCard } from './css/card';
 const ListCard = ({ person, remove, index, activeUser }) => {
     return(
         <Card>
-            { activeUser.activeUser && <CloseCard onClick={e => remove(e, person, index)}>x</CloseCard> }
+            {console.log(activeUser)}
+            { activeUser.success && <CloseCard onClick={e => remove(e, person, index)}>x</CloseCard> }
             <CardName>Name: {person.name}</CardName>
             <CardItem>Item: {person.item}</CardItem>
         </Card>
@@ -15,7 +16,7 @@ const ListCard = ({ person, remove, index, activeUser }) => {
 
 const mapStateToProps = state => {
     return {
-        activeUser: state.activeUserBool
+        activeUser: state.activeUser
     }
 }
 

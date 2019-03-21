@@ -9,7 +9,7 @@ const FoodContainer = ({ foods, activeUser }) => {
         <List>
             <Title>What's left to bring: </Title>
             {foods.map(food => {
-                return activeUser.activeUser ? 
+                return activeUser.success ? 
                 <textarea defaultValue={food.item} key={food._id} />
             :  
                 <Section key={food._id}>
@@ -22,7 +22,7 @@ const FoodContainer = ({ foods, activeUser }) => {
 
 const mapStateToProps = state => {
     return {
-        activeUser: state.activeUserBool
+        activeUser: state.activeUser
     }
 }
 
