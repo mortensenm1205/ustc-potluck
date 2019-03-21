@@ -14,6 +14,13 @@ const user = require('./routes/user');
 const app = express();
 const port = process.env.PORT || 5000;
 
+app.use(session({
+    secret: 'ustcPotluck!',
+    resave: false, 
+    saveUninitialized: false, 
+    cookie: { maxAge: 6000 } 
+})); //session secret
+
 require('./config/passport')(passport);
 
 passport.serializeUser(function (user, cb) {
@@ -27,12 +34,6 @@ passport.deserializeUser(function (id, cb) {
     });
 });
 
-app.use(session({
-    secret: 'ustcPotluck!', 
-    resave: false, 
-    saveUninitialized: true, 
-    cookie: { maxAge: null } 
-})); //session secret
 app.use(passport.initialize());
 app.use(passport.session());
 
