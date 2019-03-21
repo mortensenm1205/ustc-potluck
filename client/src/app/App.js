@@ -26,7 +26,10 @@ class App extends Component {
   componentDidUpdate(prevProps, prevState) {
     const currentTime = Date.now() / 1000;
     if ((prevState.activeUser !== this.state.activeUser) && prevProps.activeUser.expires < currentTime) {
+      window.localStorage.setItem('activeUser', JSON.stringify(prevProps.activeUser))
       this.setState({ activeUser: prevProps.activeUser })
+    } else {
+      window.localStorage.removeItem('activeUser');
     }
   }
 
