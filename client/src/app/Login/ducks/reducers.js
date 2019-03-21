@@ -1,12 +1,13 @@
 const inital = {
-    activeUser: false
+    success: false
 }
 
-export const activeUserBool = (state = inital, action) => {
+export const activeUser = (state = inital, action) => {
     switch(action.type) {
         case "LOGIN_USER_SUCCESS":
             return {
-                activeUser: action.data.success
+                ...state,
+                ...action.data
             }
         default:
             return state;
