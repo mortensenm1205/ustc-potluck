@@ -24,7 +24,12 @@ router.post('/new', (req, res) => {
 });
 
 router.post('/', passport.authenticate('local'), (req, res) => {
-    if(req.user) res.status(200).json({ success: true });
+    const potluckUser = {
+        _id: req.session.passport.user,
+        success: true,
+        expires: req.session.cookie.maxAge / 100,
+    }
+    if(req.user) res.status(200).json(potluckUser);
 })
 
 module.exports = router;
