@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import uniqid from 'uniqid';
 
 import { AppContainer } from './css';
 import Foods from './Foods';
@@ -11,13 +10,6 @@ import { loadPotluckList, removePotluckItem } from './List/ducks/actions';
 import { loadFoodList } from './Foods/ducks/actions';
 
 class App extends Component {
-
-  state = {
-    foods: [
-      { id: uniqid(), name: 'Hamburger Buns' },
-      { id: uniqid(), name: 'Chips' }
-    ],
-  }
 
   componentDidMount() {
     const { getPotluckList, getFoodsList } = this.props;

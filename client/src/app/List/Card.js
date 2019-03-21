@@ -6,7 +6,6 @@ import { Card, CardName, CardItem, CloseCard } from './css/card';
 const ListCard = ({ person, remove, index, activeUser }) => {
     return(
         <Card>
-            {console.log(activeUser)}
             { activeUser.success && <CloseCard onClick={e => remove(e, person, index)}>x</CloseCard> }
             <CardName>Name: {person.name}</CardName>
             <CardItem>Item: {person.item}</CardItem>
