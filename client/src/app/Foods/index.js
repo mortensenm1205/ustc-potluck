@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 
 import { List, Title, Section } from './css/list';
 import FoodItem from './Item';
@@ -20,14 +19,4 @@ const FoodContainer = ({ foods, activeUser }) => {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        activeUser: state.activeUser
-    }
-}
-
-const mapDispatchToProps = dispatch => {
-    return {}
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(FoodContainer);
+export default FoodContainer;
