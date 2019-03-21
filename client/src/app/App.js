@@ -11,19 +11,36 @@ import { loadFoodList } from './Foods/ducks/actions';
 
 class App extends Component {
 
+
+  state = {
+    activeUser: {}
+  }
+
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.activeUser !== prevState.activeUser) {
+      return { activeUser: nextProps.activeUser }
+    }
+    else return null;
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const currentTime = Date.now() / 1000;
+    if ((prevState.activeUser !== this.state.activeUser) && prevProps.activeUser.expires < currentTime) {
+      this.setState({ activeUser: prevProps.activeUser })
+    }
+
+    // if (this.state.activeUser.success && this.state.activeUser.expires !== 0) {
+    //   window.localStorage.setItem('acitveUser', JSON.stringify(this.state.activeUser));
+    // } else {
+    //   window.localStorage.removeItem('activeUser');
+    // }
+  }
+
   componentDidMount() {
-    const { getPotluckList, getFoodsList, activeUser } = this.props;
+    const { getPotluckList, getFoodsList } = this.props;
     getPotluckList();
     getFoodsList();
-
-    // testing to see how i can set localstorage to save activeUser
-    // currently this isn't working
-    // will have to use this in another lc method.
-    if(activeUser.success && activeUser.expires !== 0) {
-      window.localStorage.setItem('acitveUser', JSON.stringify(activeUser));
-    } else {
-      window.localStorage.removeItem('activeUser');
-    }
+    
   }
 
   potLuckItemRemoval = (e, plLuckPerson, index) => {
@@ -34,14 +51,14 @@ class App extends Component {
   }
 
   render() {
-    const { potluckList, foodList, activeUser } = this.props;
+    const { potluckList, foodList } = this.props;
     return (
       <AppContainer>
         {/* 
           This is for the blue background divder. 
           Felt like it was easier to do this way than a styled-component
         */}
-        {console.log(activeUser)}
+        {console.log("PROPS: ", this.props.activeUser, "STATE: ", this.state.activeUser)}
         <div 
           style={{ 
             height: '300px', 
@@ -51,8 +68,8 @@ class App extends Component {
         }}/>
         <Form />
         <Login />
-        <List people={potluckList} remove={this.potLuckItemRemoval} />
-        <Foods foods={foodList} />
+        <List people={potluckList} remove={this.potLuckItemRemoval} activeUser={this.state.activeUser} />
+        <Foods foods={foodList} activeUser={this.state.activeUser}/>
       </AppContainer>
     );
   }
