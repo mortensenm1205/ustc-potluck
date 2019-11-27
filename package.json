@@ -22,14 +22,14 @@
   "homepage": "https://github.com/mortensenm1205/ustc-potluck#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
-    "body-parser": "^1.18.3",
-    "concurrently": "^4.1.0",
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.0.0",
     "cors": "^2.8.5",
-    "express": "^4.16.4",
-    "mongoose": "^5.4.5",
-    "nodemon": "^1.18.9",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.12",
+    "nodemon": "^2.0.1",
     "passport": "^0.4.0",
     "passport-local": "^1.0.0",
-    "express-session": "^1.15.6"
+    "express-session": "^1.17.0"
   }
 }
