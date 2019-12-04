@@ -7,14 +7,12 @@ import {
 
 import { loadPotluckData } from '../List/ducks/reducers';
 import { loadFoodData } from '../Foods/ducks/reducers';
-import { activeUser } from '../Login/ducks/reducers';
 import logger from 'redux-logger';
 import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
     loadPotluckData, 
     loadFoodData,
-    activeUser
 })
 
 export default createStore(
