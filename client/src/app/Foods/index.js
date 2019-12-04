@@ -7,20 +7,22 @@ class FoodContainer extends Component {
 
     state = {
         editable: false,
-        foodsState: []
+        // Updated to include two arrays for current and updated foodList
+        currentFoods: [],
+        updatedFoods: []
     }
 
     componentDidUpdate(prevProps) {
         if(prevProps.foods !== this.props.foods) {
             this.setState({
-                foodsState: [...this.props.foods]
+                currentFoods: [...this.props.foods]
             });
         }
     }
 
     editList = () => {
         this.setState({ 
-            editable: !this.state.editable
+          editable: !this.state.editable
         });
     }
 
@@ -32,26 +34,44 @@ class FoodContainer extends Component {
             if (removedFood === '') {
                 return currentArr.splice(index, 1);
             }
-            console.log(currentArr);
             return currentArr;
-        })
+        });
+        // After the item is removed, we set the foodArray to the updated array
+        this.setState({ updatedFoods: foodArray });
+    }
+
+    saveList = () => {
+        // Currently testing how to save the updated array list
+        console.log(this.state.updatedFoods);
+        this.setState({
+          editable: !this.state.editable
+        });
     }
 
     render() {
-        const { foodsState, editable } = this.state;
+        const { currentFoods, editable } = this.state;
         return (
           <List>
             <Title>What's left to bring: </Title>
             <Section>
-                {editable ? 
-                    <textarea value={foodsState.map(food => food.item)} onChange={this.handleChange} />
-                 : 
-                    foodsState.map(food => {
-                         return <FoodItem food={food} key={food._id} />;
-                    })
-                }
+              {/* Was able to finally produce array values in a single textArea*/}
+              {!editable ? (
+                  currentFoods.map(food => {
+                      return <FoodItem food={food} key={food._id} />;
+                  })
+                ) : (
+                  <textarea
+                      value={currentFoods.map(food => food.item)}
+                      onChange={this.handleChange}
+                  />
+              )}
+              {/* Needing two different buttons because of the methods they perform */}
+              {!editable ? (
+                <button onClick={this.editList}>Edit List</button>
+              ) : (
+                <button onClick={this.saveList}>Save List</button>
+              )}
             </Section>
-            <button onClick={this.editList}>{editable ? 'Save List' : 'Edit List'}</button>
           </List>
         );
     }
