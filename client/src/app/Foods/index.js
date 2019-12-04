@@ -15,7 +15,8 @@ class FoodContainer extends Component {
     componentDidUpdate(prevProps) {
         if(prevProps.foods !== this.props.foods) {
             this.setState({
-                currentFoods: [...this.props.foods]
+                currentFoods: [...this.props.foods],
+                updatedFoods: [...this.props.foods]
             });
         }
     }
@@ -49,7 +50,7 @@ class FoodContainer extends Component {
     }
 
     render() {
-        const { currentFoods, editable } = this.state;
+        const { updatedFoods, currentFoods, editable } = this.state;
         return (
           <List>
             <Title>What's left to bring: </Title>
@@ -61,7 +62,7 @@ class FoodContainer extends Component {
                   })
                 ) : (
                   <textarea
-                      value={currentFoods.map(food => food.item)}
+                      value={updatedFoods.map(food => food.item)}
                       onChange={this.handleChange}
                   />
               )}
