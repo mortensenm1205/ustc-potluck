@@ -5,33 +5,10 @@ import { AppContainer } from './css';
 import Foods from './Foods';
 import List from './List';
 import Form from './Form';
-import Login from './Login';
 import { loadPotluckList, removePotluckItem } from './List/ducks/actions';
 import { loadFoodList } from './Foods/ducks/actions';
 
 class App extends Component {
-
-
-  state = {
-    activeUser: {}
-  }
-
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.activeUser !== prevState.activeUser) {
-      return { activeUser: nextProps.activeUser }
-    }
-    else return null;
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    const currentTime = Date.now() / 1000;
-    if ((prevState.activeUser !== this.state.activeUser) && prevProps.activeUser.expires < currentTime) {
-      window.localStorage.setItem('activeUser', JSON.stringify(prevProps.activeUser))
-      this.setState({ activeUser: prevProps.activeUser })
-    } else {
-      window.localStorage.removeItem('activeUser');
-    }
-  }
 
   componentDidMount() {
     const { getPotluckList, getFoodsList } = this.props;
@@ -63,9 +40,8 @@ class App extends Component {
             gridRow: '1 / -1'
         }}/>
         <Form />
-        <Login />
-        <List people={potluckList} remove={this.potLuckItemRemoval} activeUser={this.state.activeUser} />
-        <Foods foods={foodList} activeUser={this.state.activeUser}/>
+        <List people={potluckList} remove={this.potLuckItemRemoval} />
+        <Foods foods={foodList} />
       </AppContainer>
     );
   }
@@ -73,8 +49,7 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     potluckList: state.loadPotluckData,
-    foodList: state.loadFoodData,
-    activeUser: state.activeUser
+    foodList: state.loadFoodData
   }
 }
 
