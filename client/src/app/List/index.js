@@ -2,7 +2,7 @@ import React from 'react';
 import { Items, Title } from './css/items';
 import ListCard from './Card';
 
-const ListContainer = ({ people, remove, activeUser }) => {
+const ListContainer = ({ people, remove }) => {
     return(
         <Items>
             <Title>What people are bringing: </Title>
@@ -12,7 +12,6 @@ const ListContainer = ({ people, remove, activeUser }) => {
                     key={personObj._id} 
                     remove={remove} 
                     index={index} 
-                    activeUser={activeUser} 
                 />
             ))}
         </Items>
