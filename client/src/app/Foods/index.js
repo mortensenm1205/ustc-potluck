@@ -30,12 +30,13 @@ class FoodContainer extends Component {
           <List>
             <Title>What's left to bring: </Title>
             <Section>
-              {foodsState.map(food => {
-                if (editable) {
-                  return <textarea value={food.item} key={food._id}></textarea>;
+                {editable ? 
+                    <textarea value={foodsState.map(food => food.item)} />
+                 : 
+                    foodsState.map(food => {
+                         return <FoodItem food={food} key={food._id} />;
+                    })
                 }
-                return <FoodItem food={food} key={food._id} />;
-              })}
             </Section>
             <button onClick={this.editList}>Edit List</button>
           </List>
