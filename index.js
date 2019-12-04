@@ -3,11 +3,9 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { mongoose } = require('./config/db');
-const { User } = require('./models/user');
 
 const foods = require('./routes/foods');
 const list = require('./routes/list');
-const user = require('./routes/user');
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -17,6 +15,5 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json(), cors());
 app.use('/api/foods', foods);
 app.use('/api/plList', list);
-app.use('/api/user', user);
 
 app.listen(port, () => console.log(`Running on port ${port}`))
