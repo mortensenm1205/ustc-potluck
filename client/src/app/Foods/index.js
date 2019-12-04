@@ -38,7 +38,7 @@ class FoodContainer extends Component {
                     })
                 }
             </Section>
-            <button onClick={this.editList}>Edit List</button>
+            <button onClick={this.editList}>{editable ? 'Save List' : 'Edit List'}</button>
           </List>
         );
     }
