@@ -24,6 +24,19 @@ class FoodContainer extends Component {
         });
     }
 
+    handleChange = e => {
+        // Turning text values into an array
+        const foodArray = e.target.value.split(',');
+        // Removing array item
+        foodArray.map((removedFood, index, currentArr) => {
+            if (removedFood === '') {
+                return currentArr.splice(index, 1);
+            }
+            console.log(currentArr);
+            return currentArr;
+        })
+    }
+
     render() {
         const { foodsState, editable } = this.state;
         return (
@@ -31,7 +44,7 @@ class FoodContainer extends Component {
             <Title>What's left to bring: </Title>
             <Section>
                 {editable ? 
-                    <textarea value={foodsState.map(food => food.item)} />
+                    <textarea value={foodsState.map(food => food.item)} onChange={this.handleChange} />
                  : 
                     foodsState.map(food => {
                          return <FoodItem food={food} key={food._id} />;
