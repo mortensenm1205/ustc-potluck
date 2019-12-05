@@ -24,8 +24,11 @@ export const loadFoodList = () => {
 
 export const addFoodItem = foodItem => {
     return dispatch => {
-        axios.post("/api/foods/addFood", { foodItem })
-            .then(res => console.log(res))
-            .catch(e => console.log(e))
+        foodItem.forEach(element => {
+            axios
+              .post("/api/foods/addFood", { item: element })
+              .then(res => console.log(res))
+              .catch(e => console.log(e));
+        });
     }
 }
