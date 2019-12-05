@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import { List, Title, Section } from './css/list';
 import FoodItem from './Item';
+import { addFoodItem } from './ducks/actions';
 
 class FoodContainer extends Component {
 
@@ -37,8 +39,9 @@ class FoodContainer extends Component {
     }
 
     saveList = () => {
-        // Currently testing how to save the updated array list
-        console.log(this.state.updatedFoods);
+        const { addFood } = this.props;
+
+        addFood(this.state.updatedFoods);
         this.setState({
           editable: !this.state.editable
         });
@@ -76,5 +79,12 @@ class FoodContainer extends Component {
     }
 }
 
+const mapStateToProps = state => { return {} }
 
-export default FoodContainer;
+const mapDispatchToProps = dispatch => {
+  return {
+    addFood: foodItem => dispatch(addFoodItem(foodItem))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FoodContainer);
