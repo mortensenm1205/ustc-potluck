@@ -24,6 +24,8 @@ export const loadFoodList = () => {
 
 export const addFoodItem = foodItem => {
     return dispatch => {
-        axios.put()
+        axios.post("/api/foods/addFood", { foodItem })
+            .then(res => console.log(res))
+            .catch(e => console.log(e))
     }
 }
