@@ -21,24 +21,19 @@ class FoodContainer extends Component {
         }
     }
 
+    
+    handleChange = e => {
+      // Turning text values into an array
+      const foodArray = e.target.value.split(',');
+      // Saving the new text array into updatedFoods
+      this.setState({ updatedFoods: foodArray });
+      
+    }
+    
     editList = () => {
         this.setState({ 
           editable: !this.state.editable
         });
-    }
-
-    handleChange = e => {
-        // Turning text values into an array
-        const foodArray = e.target.value.split(',');
-        // Removing array item
-        foodArray.map((removedFood, index, currentArr) => {
-            if (removedFood === '') {
-                return currentArr.splice(index, 1);
-            }
-            return currentArr;
-        });
-        // After the item is removed, we set the foodArray to the updated array
-        this.setState({ updatedFoods: foodArray });
     }
 
     saveList = () => {
@@ -57,14 +52,17 @@ class FoodContainer extends Component {
             <Section>
               {/* Was able to finally produce array values in a single textArea*/}
               {!editable ? (
-                  currentFoods.map(food => {
-                      return <FoodItem food={food} key={food._id} />;
-                  })
-                ) : (
+                currentFoods.map(food => {
+                  return <FoodItem food={food} key={food._id} />;
+                })
+              ) : (
+                <div>
+                  <p>Seperate each food by comma:</p>
                   <textarea
-                      value={updatedFoods.map(food => food.item)}
-                      onChange={this.handleChange}
+                    placeholder={updatedFoods.map(food => food.item)}
+                    onChange={this.handleChange}
                   />
+                </div>
               )}
               {/* Needing two different buttons because of the methods they perform */}
               {!editable ? (
