@@ -7,6 +7,13 @@ export const loadFoodListSuccess = foodList => {
         }
 }
 
+export const addFoodItemSuccess = foodItem => {
+    return {
+        type: "ADD_FOOD_ITEM_SUCCESS",
+        data: foodItem
+    }
+}
+
 export const loadFoodList = () => {
     return dispatch => {
         axios.get('/api/foods/getFoods')
@@ -14,3 +21,9 @@ export const loadFoodList = () => {
             .catch(e => console.log(e))
     }
 } 
+
+export const addFoodItem = foodItem => {
+    return dispatch => {
+        axios.put()
+    }
+}
