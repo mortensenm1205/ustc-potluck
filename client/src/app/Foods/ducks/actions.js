@@ -32,10 +32,12 @@ export const loadFoodList = () => {
 export const addFoodItem = foodItem => {
     return dispatch => {
         foodItem.forEach(element => {
-            axios
-              .post("/api/foods/addFood", { item: element })
-              .then(res => dispatch(addFoodItemSuccess(res.data.food)))
-              .catch(e => console.log(e));
+            if (typeof element === 'string') {
+                axios
+                  .post("/api/foods/addFood", { item: element })
+                  .then(res => dispatch(addFoodItemSuccess(res.data.food)))
+                  .catch(e => console.log(e));
+            }
         });
     } 
 }
