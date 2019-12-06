@@ -22,5 +22,10 @@ router.post('/addFood', (req, res) => {
         .catch(e => res.status(400).send(e))
 });
 
+router.delete(':foodItem?', (req, res) => {
+    Food.deleteOne({ item: req.query.foodItem })
+        .then(deleted_response => res.status(200).send(deleted_response))
+        .catch(e => res.status(400).send(e))
+})
 
 module.exports = router;
