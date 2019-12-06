@@ -9,6 +9,8 @@ export const loadFoodData = (state = [], action) => {
             ...state, 
             action.data
         ];
+      case "REMOVE_FOOD_ITEM_SUCCESS":
+        return state.filter((state_item, index) => index !== action.data);
       default:
         return state;
     }
