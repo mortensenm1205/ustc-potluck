@@ -32,9 +32,9 @@ class FoodContainer extends Component {
       
     }
 
-    removalOfFFoodItem = () => {
-      const { removeFood } = this.props;
-      removeFood(this.state.currentFoods)
+    removalOfFFoodItem = index => {
+      const { removeFood, getFoodsList } = this.props;
+      removeFood(this.state.currentFoods, index, () => getFoodsList());
     }
     
     editList = () => {
@@ -59,12 +59,13 @@ class FoodContainer extends Component {
             <Title>What's left to bring: </Title>
             <Section>
               {/* Was able to finally produce array values in a single textArea*/}
-              {currentFoods.map(food => {
+              {currentFoods.map((food, index) => {
                   return (
                     <FoodItem
                       food={food}
                       key={food._id}
                       editable={editable}
+                      index={index}
                       remove={this.removalOfFFoodItem}
                     />
                   );
@@ -96,7 +97,7 @@ const mapStateToProps = state => { return {} }
 const mapDispatchToProps = dispatch => {
   return {
     addFood: foodItem => dispatch(addFoodItem(foodItem)),
-    removeFood: foodItem => dispatch(removeFoodItem(foodItem))
+    removeFood: (foodItem, index) => dispatch(removeFoodItem(foodItem, index))
   };
 }
 
