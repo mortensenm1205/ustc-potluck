@@ -14,11 +14,11 @@ export const addFoodItemSuccess = foodItem => {
     }
 }
 
-export const removeFoodItemSuccess = foodItem => {
+export const removeFoodItemSuccess = foodIndex => {
     return {
         type: "REMOVE_FOOD_ITEM_SUCCESS",
-        data: foodItem
-    }
+        data: foodIndex
+    };
 }
 
 export const loadFoodList = () => {
@@ -37,13 +37,24 @@ export const addFoodItem = foodItem => {
               .then(res => dispatch(addFoodItemSuccess(res.data.food)))
               .catch(e => console.log(e));
         });
-    }
+    } 
 }
 
-export const removeFoodItem = listOfFoodItems => {
+export const removeFoodItem = (arrOfFoodItems, index, callback) => {
     return dispatch => {
-        listOfFoodItems.forEach((foodItem, foodItemIndex) => {
-          console.log(foodItem, foodItemIndex);
+        arrOfFoodItems.forEach((arrFoodItem, foodItemIndex) => {
+          if (foodItemIndex === index) {
+              axios
+                .delete(
+                    "api/foods", 
+                    { params: { foodItem: arrFoodItem.item } 
+                })
+                .then(res => {
+                    dispatch(removeFoodItemSuccess(index));
+                    callback();
+                })
+                .catch(e => console.log(e));
+          }
         });
     }
 }
