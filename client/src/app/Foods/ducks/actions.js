@@ -14,13 +14,6 @@ export const addFoodItemSuccess = foodItem => {
     }
 }
 
-export const removeFoodItemSuccess = foodIndex => {
-    return {
-        type: "REMOVE_FOOD_ITEM_SUCCESS",
-        data: foodIndex
-    };
-}
-
 export const loadFoodList = () => {
     return dispatch => {
         axios.get('/api/foods/getFoods')
@@ -52,7 +45,6 @@ export const removeFoodItem = (arrOfFoodItems, index, callback) => {
                     { params: { foodItem: arrFoodItem.item } 
                 })
                 .then(res => {
-                    dispatch(removeFoodItemSuccess(index));
                     callback();
                 })
                 .catch(e => console.log(e));
