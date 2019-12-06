@@ -14,6 +14,13 @@ export const addFoodItemSuccess = foodItem => {
     }
 }
 
+export const removeFoodItemSuccess = foodItem => {
+    return {
+        type: "REMOVE_FOOD_ITEM_SUCCESS",
+        data: foodItem
+    }
+}
+
 export const loadFoodList = () => {
     return dispatch => {
         axios.get('/api/foods/getFoods')
@@ -30,5 +37,17 @@ export const addFoodItem = foodItem => {
               .then(res => dispatch(addFoodItemSuccess(res.data.food)))
               .catch(e => console.log(e));
         });
+    }
+}
+
+export const removeFoodItem = foodItem => {
+    return dispatch => {
+        axios.delete(
+            'api/foods', 
+            { params: { foodItem }}
+        )
+        .then(res => console.log(res))
+        .catch(e => console.log(e))
+
     }
 }
