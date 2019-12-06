@@ -54,11 +54,11 @@ class FoodContainer extends Component {
             <Title>What's left to bring: </Title>
             <Section>
               {/* Was able to finally produce array values in a single textArea*/}
-              {!editable ? (
-                currentFoods.map(food => {
-                  return <FoodItem food={food} key={food._id} />;
+              {currentFoods.map(food => {
+                  return <FoodItem food={food} key={food._id} editable={editable} />;
                 })
-              ) : (
+              }
+              {editable &&  
                 <div>
                   <p>Seperate each food by comma:</p>
                   <textarea
@@ -66,12 +66,12 @@ class FoodContainer extends Component {
                     onChange={this.handleChange}
                   />
                 </div>
-              )}
+              }
               {/* Needing two different buttons because of the methods they perform */}
-              {!editable ? (
-                <button onClick={this.editList}>Edit List</button>
-              ) : (
+              {editable ? (
                 <button onClick={this.saveList}>Save List</button>
+              ) : (
+                <button onClick={this.editList}>Edit List</button>
               )}
             </Section>
           </List>
