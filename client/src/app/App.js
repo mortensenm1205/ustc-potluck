@@ -25,7 +25,7 @@ class App extends Component {
   }
 
   render() {
-    const { potluckList, foodList } = this.props;
+    const { potluckList, foodList, getFoodsList } = this.props;
     return (
       <AppContainer>
         {/* 
@@ -41,7 +41,7 @@ class App extends Component {
         }}/>
         <Form />
         <List people={potluckList} remove={this.potLuckItemRemoval} />
-        <Foods foods={foodList} />
+        <Foods foods={foodList} getFoodsList={getFoodsList} />
       </AppContainer>
     );
   }
