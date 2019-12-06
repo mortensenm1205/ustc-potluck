@@ -40,14 +40,10 @@ export const addFoodItem = foodItem => {
     }
 }
 
-export const removeFoodItem = foodItem => {
+export const removeFoodItem = listOfFoodItems => {
     return dispatch => {
-        axios.delete(
-            'api/foods', 
-            { params: { foodItem }}
-        )
-        .then(res => console.log(res))
-        .catch(e => console.log(e))
-
+        listOfFoodItems.forEach((foodItem, foodItemIndex) => {
+          console.log(foodItem, foodItemIndex);
+        });
     }
 }
