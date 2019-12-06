@@ -1,10 +1,10 @@
 import React from 'react';
 import { Food, FoodDetails, RemoveFoodBtn } from "./css/food";
 
-const FoodItem = ({ food, editable }) => {
+const FoodItem = ({ food, editable, remove }) => {
     return (
       <Food>
-        {editable && <RemoveFoodBtn>X</RemoveFoodBtn>}
+        {editable && <RemoveFoodBtn onClick={remove}>X</RemoveFoodBtn>}
         <FoodDetails>{food.item}</FoodDetails>
       </Food>
     );

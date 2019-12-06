@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { List, Title, Section } from './css/list';
 import FoodItem from './Item';
-import { addFoodItem } from './ducks/actions';
+import { addFoodItem, removeFoodItem } from './ducks/actions';
 
 class FoodContainer extends Component {
 
@@ -31,6 +31,11 @@ class FoodContainer extends Component {
       this.setState({ updatedFoods: foodArray });
       
     }
+
+    removalOfFFoodItem = () => {
+      const { removeFood } = this.props;
+      removeFood(this.state.currentFoods)
+    }
     
     editList = () => {
         this.setState({ 
@@ -55,7 +60,14 @@ class FoodContainer extends Component {
             <Section>
               {/* Was able to finally produce array values in a single textArea*/}
               {currentFoods.map(food => {
-                  return <FoodItem food={food} key={food._id} editable={editable} />;
+                  return (
+                    <FoodItem
+                      food={food}
+                      key={food._id}
+                      editable={editable}
+                      remove={this.removalOfFFoodItem}
+                    />
+                  );
                 })
               }
               {editable &&  
@@ -83,8 +95,9 @@ const mapStateToProps = state => { return {} }
 
 const mapDispatchToProps = dispatch => {
   return {
-    addFood: foodItem => dispatch(addFoodItem(foodItem))
-  }
+    addFood: foodItem => dispatch(addFoodItem(foodItem)),
+    removeFood: foodItem => dispatch(removeFoodItem(foodItem))
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(FoodContainer);
