@@ -9,18 +9,17 @@ const router = express.Router();
 router.get('/getPotLuckList', (req, res) => {
     var potLuckList = [];
     ListedPotLuckItem.find()
-        .then(item => {
-            potLuckList = [...item]
-            return potLuckList
-        })
-        .then(plList => {
-            return NonListedPotLuckItem.find()
-                .then(item => {
-                    potLuckList = [...plList, ...item]
-                    res.status(200).send(potLuckList);
-                })
-        })
-        .catch(e => console.log(e))
+      .then(item => {
+        potLuckList = [...item];
+        return potLuckList;
+      })
+      .then(plList => {
+        return NonListedPotLuckItem.find().then(item => {
+          potLuckList = [...plList, ...item];
+          res.status(200).send(potLuckList);
+        });
+      })
+      .catch(e => res.status(400).send(e));
 });
 
 router.post('/addPotLuckItem', (req, res) => {
@@ -35,11 +34,11 @@ router.post('/addPotLuckItem', (req, res) => {
                 return listed_item.save()
                     .then(listed_obj => {
                         Food.deleteOne({ item: listed_obj.item })
-                            .then(deleted_response => {
-                                console.log(deleted_response);
-                                res.status(200).send({ listed_obj })
-                            })
-                            .catch(e => console.log(e))
+                          .then(deleted_response => {
+                            console.log(deleted_response);
+                            res.status(200).send({ listed_obj });
+                          })
+                          .catch(e => res.status(400).send(e));
                         })
                     .catch(e => res.status(400).send(e));
             } else {
@@ -68,12 +67,13 @@ router.delete(':plItem?', (req, res) => {
                         item: req.query.plItem
                     })
 
-                    food.save()
-                        .then(new_food_item => {
-                            console.log("deleted_response: ", deleted_response)
-                            console.log("new_food_item: ", new_food_item)
-                        })
-                        .catch(e => console.log(e))
+                    food
+                      .save()
+                      .then(new_food_item => {
+                        console.log("deleted_response: ", deleted_response);
+                        console.log("new_food_item: ", new_food_item);
+                      })
+                      .catch(e => res.status(400).send(e));
                 })
                 .catch(e => res.status(400).send(e))
             // We still need the removed listed object to be sent
@@ -86,28 +86,29 @@ router.delete(':plItem?', (req, res) => {
 
         for (var i = 0; i < nonItems.length; i++) {
             if (nonItems[i].item === req.query.plItem) {
-                NonListedPotLuckItem.deleteOne({ item: req.query.plItem})
-                    .then(deleted_response => console.log(deleted_response))
-                    .catch(e => console.log(e));
+                NonListedPotLuckItem.deleteOne({ item: req.query.plItem })
+                  .then(deleted_response => console.log(deleted_response))
+                  .catch(e => res.status(400).send(e));
 
                 return NonListedPotLuckItem.find({ item: req.query.plItem })
                     .then(non_listed_obj => res.status(200).send({ non_listed_obj }))
                     .catch(e => res.status(400).send(e))
             } else { 
                 ListedPotLuckItem.deleteOne({ item: req.query.plItem })
-                    .then(deleted_response => {
-                        let food = new Food({
-                            item: req.query.plItem
-                        })
+                  .then(deleted_response => {
+                    let food = new Food({
+                      item: req.query.plItem
+                    });
 
-                        food.save()
-                            .then(new_food_item => {
-                                console.log("deleted_response: ", deleted_response)
-                                console.log("new_food_item: ", new_food_item)
-                            })
-                            .catch(e => console.log(e))
-                    })
-                    .catch(e => console.log(e))
+                    food
+                      .save()
+                      .then(new_food_item => {
+                        console.log("deleted_response: ", deleted_response);
+                        console.log("new_food_item: ", new_food_item);
+                      })
+                      .catch(e => res.status(400).send(e));
+                  })
+                  .catch(e => res.status(400).send(e));
 
                 return ListedPotLuckItem.find({ item: req.query.plItem })
                     .then(listed_obj => res.status(200).send({ listed_obj }))
