@@ -10,7 +10,8 @@ export const loadPotluckData = (state = [], action) => {
                 ...state,
                 action.data
             ]
-
+        case "ADD_POTLUCK_ITEM_FAILURE": 
+            return action.data;
         case "REMOVE_POTLUCK_ITEM_SUCCESS": 
             return state.filter((state_item, index) => index !== action.data)
         default:
