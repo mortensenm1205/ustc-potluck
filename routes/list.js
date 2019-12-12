@@ -23,12 +23,17 @@ router.get('/getPotLuckList', (req, res) => {
 });
 
 router.post('/addPotLuckItem', (req, res) => {
+    let { name, item } = req.body;
+    name = name.split(" ").slice(0, 1).join("");
+    item = item.split(" ").slice(0, 1).join("");
+    name = name.charAt(0).toUpperCase() + name.toLowerCase().slice(1);
+    item = item.charAt(0).toUpperCase() + item.toLowerCase().slice(1);
     Food.find().then(foods => {
         for (var i = 0; i < foods.length; i++) {
-            if (foods[i].item === req.body.item) {
+            if (foods[i].item === item) {
                 let listed_item = new ListedPotLuckItem({
-                    name: req.body.name,
-                    item: req.body.item
+                    name,
+                    item
                 });
 
                 return listed_item.save()
@@ -46,8 +51,8 @@ router.post('/addPotLuckItem', (req, res) => {
             }
         }
         let non_listed_item = new NonListedPotLuckItem({
-            name: req.body.name,
-            item: req.body.item
+            name,
+            item
         });
 
         return non_listed_item.save()

@@ -13,8 +13,11 @@ router.get('/getFoods', (req, res) => {
 
 // This will become a protected route later on.
 router.post('/addFood', (req, res) => {
+    let { item } = req.body;
+    item = item.trim();
+    item = item.charAt(0).toUpperCase() + item.slice(1);
     let food = new Food({
-        item: req.body.item
+        item
     })
 
     food.save()
