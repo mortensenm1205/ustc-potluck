@@ -34,6 +34,7 @@ class FormContainer extends Component {
         addPotluckListItem(entry, () => {
             getFoodsList();
         });
+        this.setState({ entry: {} });
         this.close();
     }
 
