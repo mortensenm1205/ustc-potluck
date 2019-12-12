@@ -25,16 +25,10 @@ export const loadFoodList = () => {
 export const addFoodItem = foodItem => {
     return dispatch => {
         foodItem.forEach(element => {
-            if (typeof element === 'string') {
-                // Removes white space
-                let updatedElement = element.trim();
-                // Takes the first letter and uppercases it
-                updatedElement = updatedElement.charAt(0).toUpperCase() + updatedElement.slice(1);
-                axios
-                  .post("/api/foods/addFood", { item: updatedElement })
-                  .then(res => dispatch(addFoodItemSuccess(res.data.food)))
-                  .catch(e => console.log(e));
-            }
+            axios
+                .post("/api/foods/addFood", { item: element })
+                .then(res => dispatch(addFoodItemSuccess(res.data.food)))
+                .catch(e => console.log(e));
         });
     } 
 }
