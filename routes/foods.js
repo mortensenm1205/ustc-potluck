@@ -13,6 +13,7 @@ router.get('/getFoods', (req, res) => {
 
 // This will become a protected route later on.
 router.post('/addFood', (req, res) => {
+    // Str mutation the eliminates white space and uppercases first letter of req.body.item
     let { item } = req.body;
     item = item.trim();
     item = item.charAt(0).toUpperCase() + item.slice(1);

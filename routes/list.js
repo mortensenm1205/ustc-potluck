@@ -23,6 +23,7 @@ router.get('/getPotLuckList', (req, res) => {
 });
 
 router.post('/addPotLuckItem', (req, res) => {
+    // Str mutation that handles single letter uppercase for req.body name and item
     let { name, item } = req.body;
     name = name.split(" ").slice(0, 1).join("");
     item = item.split(" ").slice(0, 1).join("");
