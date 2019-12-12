@@ -54,7 +54,10 @@ export const addPotluckItem = (potLuckItem, callback) => {
                 dispatch(addPotluckItemSuccess(non_listed_obj));
                 callback();
             }
-        }) // End of axios .then promise
+        })
+        // Will creat this into a more structed custom Error funtion
+        // This is just a reminder for now
+        .catch(e => console.log(e.response.message = 'Object is empty')) // End of axios .then promise
     } // End of dispatch function    
 }
 
