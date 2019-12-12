@@ -31,7 +31,6 @@ class FormContainer extends Component {
         const { entry } = this.state;
         const { addPotluckListItem, getFoodsList } = this.props;
         e.preventDefault();
-        e.target.reset();
         addPotluckListItem(entry, () => {
             getFoodsList();
         });
