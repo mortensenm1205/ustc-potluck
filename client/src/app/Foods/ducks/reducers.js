@@ -1,4 +1,4 @@
-export const loadFoodData = (state = [], action) => {
+export const foodData = (state = [], action) => {
     switch (action.type) {
       case "LOAD_FOOD_LIST_SUCCESS":
         return [

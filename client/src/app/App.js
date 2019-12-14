@@ -49,7 +49,7 @@ class App extends Component {
 const mapStateToProps = state => {
   return {
     potluckList: state.potluckData,
-    foodList: state.loadFoodData
+    foodList: state.foodData
   }
 }
 
