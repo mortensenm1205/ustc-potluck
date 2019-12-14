@@ -57,7 +57,10 @@ export const addPotluckItem = (potLuckItem, callback) => {
         })
         // Will creat this into a more structed custom Error funtion
         // This is just a reminder for now
-        .catch(e => console.log(e)) // End of axios .then promise
+        .catch(e => {
+            e.response.message = 'Form is empty. Please enter your Name and the Item you are bringing.'
+            dispatch(addPotluckItemFailure(e.response.message))
+        }) // End of axios .then promise
     } // End of dispatch function    
 }
 
