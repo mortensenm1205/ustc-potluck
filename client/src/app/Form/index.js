@@ -67,12 +67,7 @@ class FormContainer extends Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        potluckList: state.loadPotluckData,
-        foodList: state.loadFoodData
-    }
-}
+const mapStateToProps = state => {return {}}
 
 const mapDispatchToProps = dispatch => {
     return {
