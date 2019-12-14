@@ -35,7 +35,7 @@ class FormContainer extends Component {
             getFoodsList();
         });
         this.setState({ entry: {} });
-        this.close();            
+        this.close();       
     }
 
     render() {
@@ -55,7 +55,7 @@ class FormContainer extends Component {
                         <Title>Enter your item</Title>
                         <SubTitle>Enter your name and the item you're bringing to the potluck.</SubTitle> 
                         <Form onSubmit={this.formSubmit}>
-                                <div>{formError}</div>
+                                <div>{formError.message}</div>
                                 <Input type="text" placeholder="Name" name="name" onChange={this.formChange} />
                                 <Input type="text" placeholder="Item" name="item" onChange={this.formChange} />
                                 <Button>Sign up</Button>
