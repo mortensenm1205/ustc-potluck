@@ -14,10 +14,21 @@ export const addPotluckItemSuccess = potLuckItem => {
     }
 }
 
-export const addPotluckItemFailure = error_code => {
+/* 
+    I created two action creators for error handling for easier manipulation. 
+    One provides the error message, one is a error boolean 
+*/
+export const addPotluckItemFailureMessage = error_code => {
     return {
-        type: "ADD_POTLUCK_ITEM_FAILURE",
+        type: "ADD_POTLUCK_ITEM_FAILURE_MESSAGE",
         data: error_code
+    }
+}
+
+export const addPotluckItemFailureBool = error_bool => {
+    return {
+        type: "ADD_POTLUCK_ITEM_FAILURE_BOOL",
+        bool: error_bool
     }
 }
 
@@ -49,17 +60,32 @@ export const addPotluckItem = (potLuckItem, callback) => {
             const { listed_obj, non_listed_obj } = data;
             if(listed_obj !== undefined) {
                 dispatch(addPotluckItemSuccess(listed_obj));
+                /* 
+                    I'm using the error action creators here as well as a toggle type logic, 
+                    once a pot luck item is successfull, then we turn off the error action with 
+                    a null value for the message and false for the boolean. 
+
+                    I use this so that it's easier to display on the List Container component 
+                */
+                dispatch(addPotluckItemFailureMessage(null));
+                dispatch(addPotluckItemFailureBool(false));
                 callback();
             } else if (non_listed_obj !== undefined) {
                 dispatch(addPotluckItemSuccess(non_listed_obj));
+                // Same here as explained above
+                dispatch(addPotluckItemFailureMessage(null));
+                dispatch(addPotluckItemFailureBool(false))
                 callback();
             }
         })
-        // Will creat this into a more structed custom Error funtion
-        // This is just a reminder for now
         .catch(e => {
-            e.response.message = 'Form is empty. Please enter your Name and the Item you are bringing.'
-            dispatch(addPotluckItemFailure(e.response.message))
+            e.response.message = 'Form is empty. Please enter your Name and the Item you are bringing.';
+            /* 
+                This is where i turn on the error action creators, by inserting a message 
+                and turning the boolean to true.   
+            */
+            dispatch(addPotluckItemFailureMessage(e.response.message));
+            dispatch(addPotluckItemFailureBool(true));
         }) // End of axios .then promise
     } // End of dispatch function    
 }

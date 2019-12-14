@@ -17,10 +17,18 @@ export const potluckData = (state = [], action) => {
     }
 }
 
-export const potluckDataError = (state = null, action) => {
+export const potluckDataError = (state = {message: null, bool: false}, action) => {
     switch(action.type) {
-        case "ADD_POTLUCK_ITEM_FAILURE": 
-            return action.data;
+        case "ADD_POTLUCK_ITEM_FAILURE_MESSAGE": 
+            return {
+                ...state,
+                message: action.data
+            };
+        case "ADD_POTLUCK_ITEM_FAILURE_BOOL":
+            return {
+                ...state,
+                bool: !action.bool
+            };
         default:
             return state;
     }
