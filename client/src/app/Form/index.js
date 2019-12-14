@@ -29,16 +29,17 @@ class FormContainer extends Component {
 
     formSubmit = e => {
         const { entry } = this.state;
-        const { addPotluckListItem, getFoodsList } = this.props;
+        const { addPotluckListItem, getFoodsList, formError } = this.props;
         e.preventDefault();
         addPotluckListItem(entry, () => {
             getFoodsList();
         });
         this.setState({ entry: {} });
-        this.close();
+        this.close();            
     }
 
     render() {
+        const { formError } = this.props;
         return(
             <div>
                 {/* Using that state here */}
@@ -54,6 +55,7 @@ class FormContainer extends Component {
                         <Title>Enter your item</Title>
                         <SubTitle>Enter your name and the item you're bringing to the potluck.</SubTitle> 
                         <Form onSubmit={this.formSubmit}>
+                                <div>{formError}</div>
                                 <Input type="text" placeholder="Name" name="name" onChange={this.formChange} />
                                 <Input type="text" placeholder="Item" name="item" onChange={this.formChange} />
                                 <Button>Sign up</Button>
@@ -67,7 +69,11 @@ class FormContainer extends Component {
     }
 }
 
-const mapStateToProps = state => {return {}}
+const mapStateToProps = state => {
+    return {
+        formError: state.potluckDataError
+    }
+}
 
 const mapDispatchToProps = dispatch => {
     return {
