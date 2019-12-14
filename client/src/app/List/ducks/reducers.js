@@ -1,19 +1,19 @@
-export const potluckData = (state = [], action) => {
+export const potluckData = (state = { data: [], error: {}}, action) => {
     switch(action.type) {
         case "LOAD_POTLUCK_LIST_SUCCESS":
-            return [
-               ...state,
-               ...action.data
-            ]
+            return { data: [
+                ...state.data,
+                ...action.data
+             ], error: {}}
         case "ADD_POTLUCK_ITEM_SUCCESS": 
-            return [
-                ...state,
+            return { data: [
+                ...state.data,
                 action.data
-            ]
+            ], error: {}}
         case "ADD_POTLUCK_ITEM_FAILURE": 
-            return action.data;
+            return { data: [], error: action.data};
         case "REMOVE_POTLUCK_ITEM_SUCCESS": 
-            return state.filter((state_item, index) => index !== action.data)
+            return state.data.filter((state_item, index) => index !== action.data)
         default:
             return state;
     }

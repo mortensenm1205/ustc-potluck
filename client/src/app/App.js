@@ -39,7 +39,7 @@ class App extends Component {
             gridColumn: '1 / -1', 
             gridRow: '1 / -1'
         }}/>
-        <Form />
+        <Form />        
         <List people={potluckList} remove={this.potLuckItemRemoval} />
         <Foods foods={foodList} getFoodsList={getFoodsList} />
       </AppContainer>
@@ -48,7 +48,7 @@ class App extends Component {
 }
 const mapStateToProps = state => {
   return {
-    potluckList: state.potluckData,
+    potluckList: state.potluckData.data,
     foodList: state.foodData
   }
 }
