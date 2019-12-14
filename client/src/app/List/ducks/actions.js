@@ -21,10 +21,10 @@ export const addPotluckItemFailure = error_code => {
     }
 }
 
-export const removePotluckItemSuccess = potLuckItem => {
+export const removePotluckItemSuccess = potLuckItemIndex => {
     return {
         type: "REMOVE_POTLUCK_ITEM_SUCCESS",
-        data: potLuckItem
+        data: potLuckItemIndex
     }
 }
 
@@ -57,7 +57,7 @@ export const addPotluckItem = (potLuckItem, callback) => {
         })
         // Will creat this into a more structed custom Error funtion
         // This is just a reminder for now
-        .catch(e => console.log(e.response.message = 'Object is empty')) // End of axios .then promise
+        .catch(e => console.log(e)) // End of axios .then promise
     } // End of dispatch function    
 }
 
