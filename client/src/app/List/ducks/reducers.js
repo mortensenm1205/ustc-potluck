@@ -25,8 +25,8 @@ export const potluckData = (state = { data: [], errorMessage: {}}, action) => {
                 ...state,
                 errorMessage: {
                     ...state.errorMessage,
-                    remove: action.errorMessage,
-                    message: action.message
+                    message: action.message,
+                    remove: action.errorMessage
                 }
             }
         case "REMOVE_POTLUCK_ITEM_SUCCESS": 
