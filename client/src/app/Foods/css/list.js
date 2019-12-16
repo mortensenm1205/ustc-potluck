@@ -22,10 +22,6 @@ export const Section = styled.section`
     height: 300px;
     box-sizing: border-box;
     padding: 3%;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column
-    justify-content: flex-start;
     background-color: #fff;
     box-shadow: -19px 20px 74px -26px rgba(0,0,0,0.75);
 `;
