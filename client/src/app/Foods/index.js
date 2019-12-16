@@ -72,16 +72,16 @@ class FoodContainer extends Component {
                     />
                   );
                 })}
-                {editable && (
-                  <div>
-                    <p>Seperate each food by comma:</p>
-                    <textarea
-                      placeholder={updatedFoods.map(food => food.item)}
-                      onChange={this.handleChange}
-                    />
-                  </div>
-                )}
               </FoodStyleContainer>
+              {editable && (
+                <div>
+                  <p>Seperate each food by comma:</p>
+                  <textarea
+                    placeholder={updatedFoods.map(food => food.item)}
+                    onChange={this.handleChange}
+                  />
+                </div>
+              )}
               {/* Needing two different buttons because of the methods they perform */}
               {editable ? (
                 <FoodListButton onClick={this.saveList}>
