@@ -4,7 +4,6 @@ export const FoodStyleContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     flex-direction: column
-    justify-content: flex-start;
     height: 75%;
 `;
 
