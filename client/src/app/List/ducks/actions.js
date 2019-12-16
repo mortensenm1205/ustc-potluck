@@ -40,8 +40,8 @@ export const loadPotluckList = () => {
 
 
 export const addPotluckItem = (potLuckItem, callback) => {
-    let { name, item } = potLuckItem;
     return dispatch => {
+        let { name, item } = potLuckItem;
         axios.post(
             '/api/plList/addPotLuckItem',
             { name, item }
@@ -58,7 +58,8 @@ export const addPotluckItem = (potLuckItem, callback) => {
             }
         }) //End of axios .then promise
         .catch(e => {
-            e.response.message = "Form is empty. Please enter someting in the name and item field";
+            console.log(e.response.status)
+            if(e.response.status === 500) e.response.message = "Form is empty. Please enter someting in the name and item field";
             dispatch(addPotluckItemFailure(e.response.message));
         }) // End of axios .catch promise
     } // End of dispatch function    
