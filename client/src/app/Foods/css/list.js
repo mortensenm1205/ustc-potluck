@@ -19,7 +19,9 @@ export const Title = styled.p`
 `;
 
 export const Section = styled.section`
-    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column
     box-sizing: border-box;
     padding: 3%;
     background-color: #fff;
