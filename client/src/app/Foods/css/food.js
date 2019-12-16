@@ -42,8 +42,7 @@ export const FoodListButton = styled.button`
 
 export const RemoveFoodBtn = styled.button`
     position: absolute;
-    top: 10px;
-    left: 220px;
+    left: 98px;
     border: none;
     font-size: 1.6rem;
     background-color: #fff;
@@ -64,7 +63,5 @@ export const RemoveFoodBtn = styled.button`
         outline: 0;
     }
 
-    @media (min-width: 800px) {
-        left: 344px;
-    }
+    @media (min-width: 800px) {}
 `;
