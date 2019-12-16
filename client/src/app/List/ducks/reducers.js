@@ -1,4 +1,4 @@
-export const potluckData = (state = { data: [], errorMessage: { remove: null }}, action) => {
+export const potluckData = (state = { data: [], errorMessage: { remove: false }}, action) => {
     switch(action.type) {
         case "LOAD_POTLUCK_LIST_SUCCESS":
             return {
