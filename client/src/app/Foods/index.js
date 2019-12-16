@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { List, Title, Section } from './css/list';
+import { FoodListButton, FoodStyleContainer } from "./css/food";
 import FoodItem from './Item';
 import { addFoodItem, removeFoodItem } from './ducks/actions';
 
@@ -58,8 +59,9 @@ class FoodContainer extends Component {
           <List>
             <Title>What's left to bring: </Title>
             <Section>
-              {/* Was able to finally produce array values in a single textArea*/}
-              {currentFoods.map((food, index) => {
+              <FoodStyleContainer>
+                {/* Was able to finally produce array values in a single textArea*/}
+                {currentFoods.map((food, index) => {
                   return (
                     <FoodItem
                       food={food}
@@ -69,22 +71,26 @@ class FoodContainer extends Component {
                       remove={this.removalOfFFoodItem}
                     />
                   );
-                })
-              }
-              {editable &&  
-                <div>
-                  <p>Seperate each food by comma:</p>
-                  <textarea
-                    placeholder={updatedFoods.map(food => food.item)}
-                    onChange={this.handleChange}
-                  />
-                </div>
-              }
+                })}
+                {editable && (
+                  <div>
+                    <p>Seperate each food by comma:</p>
+                    <textarea
+                      placeholder={updatedFoods.map(food => food.item)}
+                      onChange={this.handleChange}
+                    />
+                  </div>
+                )}
+              </FoodStyleContainer>
               {/* Needing two different buttons because of the methods they perform */}
               {editable ? (
-                <button onClick={this.saveList}>Save List</button>
+                <FoodListButton onClick={this.saveList}>
+                  Save List
+                </FoodListButton>
               ) : (
-                <button onClick={this.editList}>Edit List</button>
+                <FoodListButton onClick={this.editList}>
+                  Edit List
+                </FoodListButton>
               )}
             </Section>
           </List>
