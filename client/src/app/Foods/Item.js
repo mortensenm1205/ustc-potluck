@@ -1,16 +1,16 @@
 import React from 'react';
-import { Food, FoodDetails, RemoveFoodBtn } from "./css/food";
+import { FoodDetailsContainer, FoodDetails, RemoveFoodBtn } from "./css/food";
 
 const FoodItem = ({ food, editable, remove, index }) => {
     return (
-      <Food>
+      <FoodDetailsContainer>
         {editable && 
             <RemoveFoodBtn 
              onClick={() => remove(index)}>
                  X
             </RemoveFoodBtn>}
         <FoodDetails>{food.item}</FoodDetails>
-      </Food>
+      </FoodDetailsContainer>
     );
 }
 
