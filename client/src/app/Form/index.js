@@ -29,13 +29,17 @@ class FormContainer extends Component {
 
     formSubmit = e => {
         const { entry } = this.state;
-        const { addPotluckListItem, getFoodsList } = this.props;
+        const {
+          addPotluckListItem,
+          getFoodsList,
+          potLuckFormError
+        } = this.props;
         e.preventDefault();
         addPotluckListItem(entry, () => {
             getFoodsList();
         });
         this.setState({ entry: {} });
-        this.close();
+        if (!potLuckFormError.remove) this.close();
     }
 
     render() {
