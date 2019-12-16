@@ -35,7 +35,9 @@ class FormContainer extends Component {
             getFoodsList();
         });
         this.setState({ entry: {} });
-        if(potLuckFormError.message) this.close();       
+        if(potLuckFormError.remove) {
+            this.setState({ modalIsOpen: true});
+        };
     }
 
     render() {
