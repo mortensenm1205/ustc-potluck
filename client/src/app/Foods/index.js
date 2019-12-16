@@ -2,7 +2,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { List, Title, Section } from './css/list';
-import { FoodListButton, FoodStyleContainer } from "./css/food";
+import {
+  FoodListButton,
+  FoodStyleContainer,
+  FoodAreaContainer, 
+  FoodAreaTitle,
+  FoodArea
+} from "./css/food";
 import FoodItem from './Item';
 import { addFoodItem, removeFoodItem } from './ducks/actions';
 
@@ -74,13 +80,13 @@ class FoodContainer extends Component {
                 })}
               </FoodStyleContainer>
               {editable && (
-                <div>
-                  <p>Seperate each food by comma:</p>
-                  <textarea
+                <FoodAreaContainer>
+                  <FoodAreaTitle>Seperate each food by comma:</FoodAreaTitle>
+                  <FoodArea
                     placeholder={updatedFoods.map(food => food.item)}
                     onChange={this.handleChange}
                   />
-                </div>
+                </FoodAreaContainer>
               )}
               {/* Needing two different buttons because of the methods they perform */}
               {editable ? (

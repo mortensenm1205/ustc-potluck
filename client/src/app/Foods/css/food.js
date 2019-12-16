@@ -16,6 +16,19 @@ export const FoodDetails = styled.p`
     font-size: 1.3rem;
 `; 
 
+export const FoodAreaContainer = styled.div``;
+
+export const FoodAreaTitle = styled.p`
+    font-size: 1.3rem;
+    margin-bottom: 1.3%;
+`; 
+
+export const FoodArea = styled.textarea`
+    width: 100%;
+    height: 75px;
+    resize: none;
+`;
+
 export const FoodListButton = styled.button`
     font-size: 1.2rem;
     background-color: #0475cef5;
