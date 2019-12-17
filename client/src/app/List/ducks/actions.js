@@ -58,7 +58,7 @@ export const addPotluckItem = (potLuckItem, callback) => {
             }
         }) //End of axios .then promise
         .catch(e => {
-            if(e.response.status === 500) e.response.message = "Form is empty. Please enter someting in the name and item field";
+            if(e.response.status === 500) e.response.message = "Uh oh! You didn't enter anything, enter a name and item before submitting";
             dispatch(addPotluckItemFailure(e.response.message));
         }) // End of axios .catch promise
     } // End of dispatch function    
