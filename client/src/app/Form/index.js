@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { FormHolder, Form, Input, Button, Title, SubTitle } from './css/form';
 import { customModalStyles, OpenModalButton, CloseModalButton } from './css/modal';
+import { ErrContainer } from './css/errForm';
 import Modal from 'react-modal';
 
 import { addPotluckItem } from '../List/ducks/actions';
@@ -31,8 +32,7 @@ class FormContainer extends Component {
         const { entry } = this.state;
         const {
           addPotluckListItem,
-          getFoodsList,
-          potLuckFormError
+          getFoodsList
         } = this.props;
         e.preventDefault();
         addPotluckListItem(entry, () => {
@@ -48,7 +48,7 @@ class FormContainer extends Component {
             <div>
                 {/* Using that state here */}
                 <OpenModalButton onClick={this.open}><span>+</span></OpenModalButton>
-                <div>{potLuckFormError.remove && potLuckFormError.message}</div>
+                {potLuckFormError.remove && <ErrContainer>{potLuckFormError.message}</ErrContainer>}
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onRequestClose={this.close}
