@@ -23,10 +23,17 @@ router.get('/getPotLuckList', (req, res) => {
 });
 
 router.post('/addPotLuckItem', (req, res) => {
+
+    if(req.body.name === undefined && req.body.item === undefined) {
+      return res.status(400).send({
+        message: "Uh oh! You didn't enter anything, enter a name and item before submitting"
+      })
+    }
+
     // Str mutation that handles single letter uppercase for req.body name and item, and if values are more than one word
     let { name, item } = req.body;
-    name = name.toLowerCase().split(" ").map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(" ");
-    item = item.toLowerCase().split(" ").map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(" ");
+    name = name.split(" ").map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(" ");
+    item = item.split(" ").map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(" ");
     Food.find().then(foods => {
         for (var i = 0; i < foods.length; i++) {
             if (foods[i].item === item) {
