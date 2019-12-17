@@ -8,6 +8,7 @@ import {
 import { potluckData } from '../List/ducks/reducers';
 import { foodData } from '../Foods/ducks/reducers';
 import thunk from 'redux-thunk';
+import logger from 'redux-logger';
 
 const rootReducer = combineReducers({
     potluckData, 
@@ -17,6 +18,6 @@ const rootReducer = combineReducers({
 export default createStore(
     rootReducer,
     compose(
-        applyMiddleware(thunk)
+        applyMiddleware(thunk, logger)
     )
 )
