@@ -1,5 +1,8 @@
 const { Schema, model } = require('mongoose');
 
+// Two models doing the same thing
+// Just used differently based on the Foods model
+// You'll see this in list route.
 let ListedPotLuckItemSchema = new Schema({
     name: {
         type: String,

@@ -1,5 +1,7 @@
 const { Schema, model } = require('mongoose');
 
+// Simple Food model that accepts one value
+// Using model then in the foods route
 let FoodSchema = new Schema({
     item: {
         type: String,
