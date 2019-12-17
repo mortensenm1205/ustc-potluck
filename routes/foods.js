@@ -16,10 +16,10 @@ router.post('/addFood', (req, res) => {
     // Str mutation the uppercases first letter of req.body.item and applies to more than one value
     let { item } = req.body;
     item = item
-        .toLowerCase()
         .split(" ")
         .map(s => s.charAt(0).toUpperCase() + s.substring(1))
-        .join(" ");
+        .join(" ")
+        .trim();
 
     let food = new Food({
         item
