@@ -17,6 +17,12 @@ class FormContainer extends Component {
         entry: {}
     }
 
+    componentDidUpdate(prevProps) {
+        if(prevProps.potLuckFormError !== this.props.potLuckFormError) {
+            this.close();
+        }
+    }
+
     // This allows the modal to open and close. 
     open = () => this.setState({ modalIsOpen: true });
     close = () => this.setState({ modalIsOpen: false });
@@ -39,7 +45,6 @@ class FormContainer extends Component {
             getFoodsList();
         });
         this.setState({ entry: {} });
-        if (!potLuckFormError.remove) this.close();
     }
 
     render() {
