@@ -28,6 +28,7 @@ export const addFoodItem = foodItem => {
             axios
                 .post("/api/foods/addFood", { item: element })
                 .then(res => dispatch(addFoodItemSuccess(res.data.food)))
+                // Really is just to display the error coming through, but it still works so i'm leaving it in the console
                 .catch(e => console.log({ message: e.response.data.message, status: e.response.status, statusText: e.response.statusText}));
         });
     } 
