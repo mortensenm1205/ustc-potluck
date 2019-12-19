@@ -28,7 +28,7 @@ export const addFoodItem = foodItem => {
             axios
                 .post("/api/foods/addFood", { item: element })
                 .then(res => dispatch(addFoodItemSuccess(res.data.food)))
-                .catch(e => console.log(e));
+                .catch(e => console.log({ message: e.response.data.message, status: e.response.status, statusText: e.response.statusText}));
         });
     } 
 }

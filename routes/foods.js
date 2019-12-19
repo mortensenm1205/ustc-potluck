@@ -16,6 +16,12 @@ router.get('/getFoods', (req, res) => {
 // This route is adding food obj's to our Food model
 // We then send the saved food obj back to the client 
 router.post('/addFood', (req, res) => {
+
+    if (typeof req.body.item === 'object') {
+        return res.status(400).send({
+            message: "Just a heads up nothing was added"
+        })
+    }
     // Str mutation the uppercases first letter of req.body.item and applies to more than one value
     let { item } = req.body;
     item = item
