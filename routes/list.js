@@ -24,7 +24,7 @@ router.get('/getPotLuckList', (req, res) => {
 
 router.post('/addPotLuckItem', (req, res) => {
 
-    if(req.body.name === undefined && req.body.item === undefined) {
+    if((req.body.name === undefined && req.body.item === undefined) || req.body.item === undefined) {
       return res.status(400).send({
         message: "Uh oh! You didn't enter anything, enter a name and item before submitting"
       })
