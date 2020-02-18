@@ -13,19 +13,11 @@ class App extends Component {
   componentDidMount() {
     const { getPotluckList, getFoodsList } = this.props;
     getPotluckList();
-    getFoodsList();
-    
-  }
-
-  potLuckItemRemoval = (e, plLuckPerson, index) => {
-    const { removePotluckListItem, getFoodsList } = this.props;
-    removePotluckListItem(plLuckPerson, index, () => {
-      getFoodsList();
-    });
+    getFoodsList(); 
   }
 
   render() {
-    const { potluckList, foodList, getFoodsList } = this.props;
+    const { potluckList, foodList, getFoodsList, removePotluckListItem } = this.props;
     return (
       <AppContainer>
         {/* 
@@ -40,7 +32,7 @@ class App extends Component {
             gridRow: '1 / -1'
         }}/>
         <Form />
-        <List people={potluckList} remove={this.potLuckItemRemoval} />
+        <List people={potluckList} getFoodsList={getFoodsList} removePotluckListItem={removePotluckListItem}/>
         <Foods foods={foodList} getFoodsList={getFoodsList} />
       </AppContainer>
     );
